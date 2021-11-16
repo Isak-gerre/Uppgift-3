@@ -14,7 +14,7 @@ profile.php
 - Lägga upp bilder
 - Översikt över dina bilder
 - Se vilka du följer / följer dig 
-- 
+- profilbild
 
 friend-php
 - bilder
@@ -52,6 +52,7 @@ USERS:
     images:
     location:
     birthday:
+    profile_picture:
 
 
     // om vi hinner
