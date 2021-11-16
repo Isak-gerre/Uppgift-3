@@ -12,3 +12,9 @@ Logga in på sitt konto
 
 SERVER 
 ---------
+
+
+
+
+FUNKTIONER
+---------
