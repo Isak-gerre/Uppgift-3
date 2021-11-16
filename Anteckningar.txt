@@ -61,3 +61,16 @@ USERS:
 
 FUNKTIONER
 ---------
+
+getUserByID( id ) {
+    return obj.user;
+}
+getImagesFromID ( id ) {
+    return array.obj.images
+}
+getFollowers ( id ) {
+    return array.obj.users
+}
+getFollowing ( id ) {
+    return array.obj.users
+}
