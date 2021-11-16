@@ -1,0 +1,14 @@
+KLIENT
+--------
+Home.php / view.php
+Om man inte är inloggad -> Sign-in.php eller log-in.php
+
+Sign-in.php
+Gör ett konto
+
+log-in.php
+Logga in på sitt konto
+
+
+SERVER 
+---------
