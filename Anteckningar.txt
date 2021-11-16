@@ -9,6 +9,18 @@ Gör ett konto
 log-in.php
 Logga in på sitt konto
 
+profile.php
+- Uppdatera bio / profilbild / kontouppgifter
+- Lägga upp bilder
+- Översikt över dina bilder
+- Se vilka du följer / följer dig 
+- 
+
+friend-php
+- bilder
+- bio
+- följare
+- följer
 
 SERVER 
 ---------
