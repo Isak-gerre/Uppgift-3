@@ -26,6 +26,37 @@ SERVER
 ---------
 
 
+DATABAS
+---------
+IMAGES: 
+{
+    id:
+    URL:
+    total_likes:
+    likes:
+    date:
+
+    // om vi hinner
+    comments:
+}
+
+USERS:
+{
+    id:
+    username:
+    mail:
+    password:
+    followers:
+    following:
+    total_images:
+    images:
+    location:
+    birthday:
+
+
+    // om vi hinner
+
+}
 
 
 FUNKTIONER
