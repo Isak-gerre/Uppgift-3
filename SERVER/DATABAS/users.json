@@ -10,7 +10,7 @@
                 3
             ],
             "following": [
-                2, 
+                2,
                 3
             ],
             "posts": [
@@ -19,7 +19,7 @@
             ],
             "location": "Helsingborg",
             "birthday": "1998",
-            "profile-picture": "http://localhost:7000/SERVER/IMAGES/PROFILE/blabla.jpg"
+            "profile-picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/blabla.jpg"
         },
         "2": {
             "id": 2,
@@ -30,16 +30,17 @@
                 3
             ],
             "following": [
-                1, 
+                1,
                 3
             ],
             "posts": [
                 313312,
-                313322
+                313322,
+                "05c81e5ee2f4b6f227b900c31e3fa09240607b19"
             ],
-            "location": "Malmö",
+            "location": "Malm\u00f6",
             "birthday": "1998",
-            "profile-picture": "http://localhost:7000/SERVER/IMAGES/PROFILE/blabla.jpg"
+            "profile-picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/blabla.jpg"
         },
         "3": {
             "id": 3,
@@ -50,17 +51,50 @@
                 2
             ],
             "following": [
-                1, 
+                1,
                 2
             ],
             "posts": [
                 314312,
                 314322
             ],
-            "location": "Malmö",
+            "location": "Malm\u00f6",
             "birthday": "1999",
-            "profile-picture": "http://localhost:7000/SERVER/IMAGES/PROFILE/blabla.jpg"
+            "profile-picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/blabla.jpg"
+        },
+        "4": {
+            "id": "4",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/5f76535ac577d5553d5906445a6e5dbb26f47439.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "5": {
+            "id": "5",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "6": {
+            "id": "6",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
         }
     },
-    "nextID": 4
+    "nextID": 7
 }

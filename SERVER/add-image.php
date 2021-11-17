@@ -55,7 +55,6 @@ if ($method === "POST" && isset($_FILES["image"])) {
 
     // Lägg till postID i användaren. 
     $usersDB = json_decode(file_get_contents("DATABAS/users.json"), true);
-    var_dump($usersDB);
     $userPosts = $usersDB["users"][$userID]["posts"];
     $userPosts[] = $uniqueID;
     $usersDB["users"][$userID]["posts"] = $userPosts;
@@ -68,7 +67,7 @@ if ($method === "POST" && isset($_FILES["image"])) {
 
     $newPost = [
         "id" => $uniqueID,
-        "image_url" => "http://localhost:7000/SERVER/IMAGES/POSTS/$uniqueFilename.$ext",
+        "image_url" => "http://localhost:7000/IMAGES/POSTS/$uniqueFilename.$ext",
         "total_likes" => 0,
         "likes" => [],
         "date" => date("Y/m/d")

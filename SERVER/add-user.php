@@ -14,15 +14,22 @@ if ($method !== "POST") {
     exit();
 }
 
-if ($method === "POST" && isset($_FILES["image"])) {
-    $profileImage = $_FILES["image"];
+if ($method === "POST" && isset($_FILES["profile_picture"])) {
+    if (isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"])) {
+        http_response_code(402);
+        exit();
+    }
+    $profileImage = $_FILES["profile_picture"];
     $filename = $profileImage["name"];
     $tempname = $profileImage["tmp_name"];
     $size = $profileImage["size"];
     $error = $profileImage["error"];
 
-    $caption = $_POST["caption"];
-    $userID = $_POST["id"];
+    $location = $_POST["location"];
+    $email = $_POST["email"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $birthday = $_POST["birthday"];
 
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
@@ -48,26 +55,31 @@ if ($method === "POST" && isset($_FILES["image"])) {
     $time = (string) time(); // Klockslaget i millisekunder
     // Skapa ett unikt filnamn
     $uniqueFilename = sha1("$time$filename");
-    $uniqueID = sha1("$time$caption");
     // Samma filnamn som den som laddades upp
     move_uploaded_file($tempname, "IMAGES/PROFILE/$uniqueFilename.$ext");
 
 
     //Lägg till bilden i databasen
-    $database = json_decode(file_get_contents("DATABAS/posts.json"), true);
-    $posts = $database["posts"];
+    $database = json_decode(file_get_contents("DATABAS/users.json"), true);
+    $users = $database["users"];
+    $userID = $database["nextID"];
 
-    $newPost = [
-        "id" => $uniqueID,
-        "image_url" => "http://localhost:7000/SERVER/IMAGES/POSTS/$uniqueFilename.$ext",
-        "total_likes" => 0,
-        "likes" => [],
-        "date" => date("Y/m/d")
+    $newUser = [
+        "id" => "$userID",
+        "username" => $username,
+        "email" => $email,
+        "password" => $password,
+        "profile_picture" => "http://localhost:7000/IMAGES/PROFILE/$uniqueFilename.$ext",
+        "followers" => [],
+        "following" => [],
+        "posts" => [],
+        "birthday" => $birthday,
     ];
-    $posts[$uniqueID] = $newPost;
-    $database["posts"] = $posts;
+    $users[$database["nextID"]] = $newUser;
+    $database["nextID"] = $database["nextID"] + 1;
+    $database["users"] = $users;
     $tojson = json_encode($database, JSON_PRETTY_PRINT);
-    file_put_contents("DATABAS/posts.json", $tojson);
+    file_put_contents("DATABAS/users.json", $tojson);
     // JSON-svar när vi testade med att skicka formuläret via JS
     header("Content-Type: application/json");
     http_response_code(200);
