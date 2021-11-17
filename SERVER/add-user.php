@@ -14,9 +14,10 @@ if ($method !== "POST") {
     exit();
 }
 
-if ($method === "POST" && isset($_FILES["profile_picture"])) {
-    if (isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"])) {
-        http_response_code(402);
+if ($method === "POST") {
+    if (!isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"], $_FILES["profile_picture"])) {
+        http_response_code(400);
+        echo json_encode(["message" => "All fields has to be filled"]);
         exit();
     }
     $profileImage = $_FILES["profile_picture"];
@@ -82,7 +83,7 @@ if ($method === "POST" && isset($_FILES["profile_picture"])) {
     file_put_contents("DATABAS/users.json", $tojson);
     // JSON-svar när vi testade med att skicka formuläret via JS
     header("Content-Type: application/json");
-    http_response_code(200);
+    http_response_code(201);
     exit();
 }
 
