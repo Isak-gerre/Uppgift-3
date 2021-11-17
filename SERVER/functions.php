@@ -57,6 +57,7 @@ function getUsersByIDs($arrayOfIDs)
     }
     return $newArray;
 }
+// Returnerar antalet användare efter argumentet(antal) du skickat med
 function getUsersByLimit($limit)
 {
     $users = loadJSON("DATABAS/users.json");
@@ -64,7 +65,7 @@ function getUsersByLimit($limit)
 
     return $users;
 }
-
+// Sparar info i en text fil för att kunna notera vad som skett
 function logToLog($message, $error = "INFO")
 {
     date_default_timezone_set('Europe/Stockholm');
@@ -72,13 +73,14 @@ function logToLog($message, $error = "INFO")
     $output = "[$date][$error] $message \n";
     file_put_contents("log.txt", $output, FILE_APPEND);
 }
-
+// Returnerar en array av bild ID:n
 function getUserImages($id)
 {
     $user = getUsersByIDs([$id]);
     $images = $user["images"];
     return $images;
 }
+// Returnerar en array av bilderna utifrån ID:n
 function getImages($arrayOfImageIDs)
 {
     foreach ($arrayOfImageIDs as $key => $imageID) {
