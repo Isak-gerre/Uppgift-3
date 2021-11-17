@@ -4,74 +4,96 @@
     require_once "functions.php";
 
     // Ladda in vår JSON data från vår fil
-    
-    $users = json_decode(file_get_contents("DATABAS/users.json"), true);
-    $posts = json_decode(file_get_contents("DATABAS/posts.json"), true);
+    $users = loadJSON("DATABAS/users.json");
+    $posts = loadJSON("DATABAS/posts.json");
 
-    // Vilken HTTP metod vi tog emot plus CONTENT TYPE
+    // HTTP-metod
+    // Content-Type
     $method = $_SERVER["REQUEST_METHOD"];
     $contentType = $_SERVER["CONTENT_TYPE"];
-    $server = $_SERVER;
 
     // Hämta ut det som skickades till vår server
     // Måste användas vid alla metoder förutom GET
     $data = file_get_contents("php://input");
     $requestData = json_decode($data, true);
+    $postID = $requestData["postID"];
+    $userID = $requestData["userID"];
 
-    // Tar emot { id } och sedan raderar en användare baserat på `id`
-    // Skickar tillbaka { id }
-    if ($method === "DELETE") {
-        // Värden som skickat med metoden
-        $postID = $requestData["postID"];
-        $userID = $requestData["userID"];
-
-        // Kontrollera att vi har den datan vi behöver
-        if (isset($requestData["postID"], $requestData["userID"])) {
-            // Kontrollerar om nyckeln finns
-            if (array_key_exists($postID, $posts["posts"])){
-                // Radera en bild från image-mappen
-                $image_url = $posts["posts"][$postID]["image_url"];
-                $http_host = $_SERVER["HTTP_HOST"];
-                $directory = str_replace("http://$http_host/", "", $image_url);
-                unlink($directory);
-
-                // Raderar postens ID från avändarens array av posts
-                $arrayPosts = $users["users"][$userID]["posts"];
-                foreach($arrayPosts as $index => $post){
-                    if($post == $postID){
-                        array_slice($users["users"][$userID]["posts"], $index, 1);
-                        break;
-                    }
-                }
-                
-                // Raderar en post från databasen
-                unset($posts["posts"][$postID]);
-                
-                // Uppdaterar filen
-                saveJSON("users.json", $users);
-                saveJSON("posts.json", $posts);
-                // send(["id" => $id]);
-
-            } else {
-                $message = [
-                    "code" => 3,
-                    "message" => "Id dosn¨t exist"
-                ];
-                send($message, 404);
-            }
-        } else {
-            $message = [
-                "code" => 2, 
-                "message" => "Missing `id` of request body"
-            ];
-            send($message, 400);
-        }
-
-    } else {
+    
+    // 1. Kollar om det är rätt metod
+    if ($method !== "DELETE") {
         $message = [
             "code" => 1,
             "message" => "Method Not Allowed"
         ];    
         send($message, 405);
     }
+   
+    // 2. Kollar om Content-TYPE = JSON
+    if ($contentType !== "application/json"){
+        $message = [
+            "code" => 2,
+            "message" => "The API only accepts JSON"
+        ];
+        send($message, 404);
+    }
+    // 3. Kollar om båda värdena finns som nycklar
+    if (!isset($requestData["postID"], $requestData["userID"]) ||empty($postID) || empty($userID)) {
+        $message = [
+            "code" => 3, 
+            "message" => "There went something wrong with the keys, check that again"
+        ];
+        send($message, 400);
+    }
+    // 4. Kollar om bilden finns i databasen 
+    if (!array_key_exists($postID, $posts["posts"])){
+        $message = [
+            "code" => 4,
+            "message" => "Picture dosn't exist at all"
+        ];
+        send($message, 404);
+    }
+    
+    // 5. Kollar om posten finns i den inloggades array av posts
+    if (array_search($postID, getUserPosts($userID)) === false){
+        $message = [
+            "code" => 5, 
+            "message" => "You can only delete pictures of your own"
+        ];
+        send($message, 400);
+    }
+
+    // Om allt stämmer raderas:
+    // 1. Bild-filen från bild mappen
+    // 2. ID från användarens array av bilder
+    // 3. Bilden från POST databasen
+     
+    // Radera en bild från image-mappen
+    $image_url = $posts["posts"][$postID]["image_url"];
+    $http_host = $_SERVER["HTTP_HOST"];
+    $directory = str_replace("http://$http_host/", "",  $image_url);
+    unlink($directory);
+
+    // Raderar postens ID från avändarens array av posts
+    $arrayPosts = $users["users"][$userID]["posts"];
+    foreach($arrayPosts as $index => $post){
+        if($post == $postID){
+            array_splice($users["users"][$userID]["posts"], $index, 1);
+            break;
+        }
+    }
+    
+    // Raderar en post från databasen
+    unset($posts["posts"][$postID]);
+    
+    // Uppdaterar filen
+    saveJSON("users.json", $users);
+    saveJSON("posts.json", $posts);
+
+    // Skickar tillbaka meddelande om att allt gick fint
+    $message = [
+        "message" => "The picture is deleted"
+    ];
+    send($message);
+    
 ?>

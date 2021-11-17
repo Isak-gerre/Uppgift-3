@@ -48,10 +48,10 @@ function getUsersByIDs($arrayOfIDs)
 {
     $users = loadJSON("DATABAS/users.json");
     $newArray = [];
-    foreach ($users as $key => $user) {
+    foreach ($users["users"] as $key => $user) {
         foreach ($arrayOfIDs as $id) {
             if ($user["id"] == $id) {
-                $newArray[] = $users[$key];
+                $newArray[] = $users["users"][$key];
             }
         }
     }
@@ -74,11 +74,11 @@ function logToLog($message, $error = "INFO")
     file_put_contents("log.txt", $output, FILE_APPEND);
 }
 // Returnerar en array av bild ID:n
-function getUserImages($id)
+function getUserPosts($id)
 {
     $user = getUsersByIDs([$id]);
-    $images = $user["images"];
-    return $images;
+    $posts = $user[0]["posts"];
+    return $posts;
 }
 // Returnerar en array av bilderna utifrån ID:n
 function getImages($arrayOfImageIDs)
