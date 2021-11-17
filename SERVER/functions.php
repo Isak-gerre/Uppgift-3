@@ -12,7 +12,7 @@ function send($data, $statusCode = 200)
 // Laddar data
 function loadJSON($filename)
 {
-    if (!file_exists("DATABAS/$filename")) {
+    if (!file_exists($filename)) {
         return false;
     }
     $data = json_decode(file_get_contents($filename), true);
