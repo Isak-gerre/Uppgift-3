@@ -1,0 +1,64 @@
+{
+    "posts": {
+        "312312": {
+           "id": "312312",
+           "image_url": "http://localhost:7000/SERVER/IMAGES/POSTS/blabla.jpg",
+           "total_likes": 2,
+           "likes": [
+               2,
+                3
+           ],
+           "date": "2020-01-17"
+        },
+        "312322": {
+            "id": "312322",
+           "image_url": "http://localhost:7000/SERVER/IMAGES/POSTS/blabla.jpg",
+           "total_likes": 2,
+           "likes": [
+               2,
+                3
+           ],
+           "date": "2020-01-17"
+        },
+        "313312": {
+            "id": "313312",
+           "image_url": "http://localhost:7000/SERVER/IMAGES/POSTS/blabla.jpg",
+           "total_likes": 2,
+           "likes": [
+               1,
+                3
+           ],
+           "date": "2020-01-17"
+        },
+        "313322": {
+            "id": "313322",
+           "image_url": "http://localhost:7000/SERVER/IMAGES/POSTS/blabla.jpg",
+           "total_likes": 2,
+           "likes": [
+               1,
+                3
+           ],
+           "date": "2020-01-17"
+        },
+        "314312": {
+            "id": "314312",
+           "image_url": "http://localhost:7000/SERVER/IMAGES/POSTS/blabla.jpg",
+           "total_likes": 2,
+           "likes": [
+               1,
+                2
+           ],
+           "date": "2020-01-17"
+        },
+        "314322": {
+            "id": "314322",
+           "image_url": "http://localhost:7000/SERVER/IMAGES/POSTS/blabla.jpg",
+           "total_likes": 2,
+           "likes": [
+               1,
+                2
+           ],
+           "date": "2020-01-17"
+        }
+    }
+}
