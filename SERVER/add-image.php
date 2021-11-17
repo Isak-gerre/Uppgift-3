@@ -22,6 +22,8 @@ if ($method === "POST" && isset($_FILES["image"])) {
     $error = $file["error"];
 
     $caption = $_POST["caption"];
+    $userID = $_POST["id"];
+
 
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
@@ -51,6 +53,14 @@ if ($method === "POST" && isset($_FILES["image"])) {
     // Samma filnamn som den som laddades upp
     move_uploaded_file($tempname, "IMAGES/POSTS/$uniqueFilename.$ext");
 
+    // Lägg till postID i användaren. 
+    $usersDB = json_decode(file_get_contents("DATABAS/users.json"), true);
+    var_dump($usersDB);
+    $userPosts = $usersDB["users"][$userID]["posts"];
+    $userPosts[] = $uniqueID;
+    $usersDB["users"][$userID]["posts"] = $userPosts;
+    $postIDtojson = json_encode($usersDB, JSON_PRETTY_PRINT);
+    file_put_contents("DATABAS/users.json", $postIDtojson);
 
     //Lägg till bilden i databasen
     $database = json_decode(file_get_contents("DATABAS/posts.json"), true);
