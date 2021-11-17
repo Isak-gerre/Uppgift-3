@@ -78,3 +78,9 @@ function getUserImages($id)
     $images = $user["images"];
     return $images;
 }
+function getImages($arrayOfImageIDs)
+{
+    foreach ($arrayOfImageIDs as $key => $imageID) {
+        # code...
+    }
+}
