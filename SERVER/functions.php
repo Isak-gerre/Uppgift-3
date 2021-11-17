@@ -1,6 +1,6 @@
 <?php
 
-
+// Skickar data
 function send($data, $statusCode = 200)
 {
     header("Content-Type: application/json");
@@ -9,6 +9,7 @@ function send($data, $statusCode = 200)
     echo $json;
     exit();
 }
+// Laddar data
 function loadJSON($filename)
 {
     if (!file_exists("DATABAS/$filename")) {
@@ -17,20 +18,20 @@ function loadJSON($filename)
     $data = json_decode(file_get_contents($filename), true);
     return $data;
 }
+// Sparar data
 function saveJSON($filename, $data)
 {
     file_put_contents("DATABAS/$filename", json_encode($data, JSON_PRETTY_PRINT));
     return true;
 }
-
+// Inspekterar en variabel
 function inspect($variable)
 {
     echo "<pre>";
     var_dump($variable);
     echo "</pre>";
 }
-
-
+// Returnerar näst kommande högsta ID:t
 function nextHighestId($filename)
 {
     $users = loadJSON($filename);
@@ -42,7 +43,7 @@ function nextHighestId($filename)
     }
     return $highestId + 1;
 }
-
+// Returnerar en array av en eller flera användare
 function getUsersByIDs($arrayOfIDs)
 {
     $users = loadJSON("DATABAS/users.json");
