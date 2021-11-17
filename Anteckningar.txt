@@ -28,13 +28,14 @@ SERVER
 
 DATABAS
 ---------
-IMAGES: 
+POSTS: 
 {
     id:
     URL:
     total_likes:
     likes:
     date:
+    caption:
 
     // om vi hinner
     comments:
