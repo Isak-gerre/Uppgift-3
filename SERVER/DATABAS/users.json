@@ -36,7 +36,8 @@
             "posts": [
                 313312,
                 313322,
-                "05c81e5ee2f4b6f227b900c31e3fa09240607b19"
+                "05c81e5ee2f4b6f227b900c31e3fa09240607b19",
+                "743f9d008086ee5348b49b5a720e5790f4fca41d"
             ],
             "location": "Malm\u00f6",
             "birthday": "1998",
@@ -94,7 +95,18 @@
             "following": [],
             "posts": [],
             "birthday": "1998"
+        },
+        "7": {
+            "id": "7",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/27246850e92eb328e511c21435b48b521f245cc3.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
         }
     },
-    "nextID": 7
+    "nextID": 8
 }

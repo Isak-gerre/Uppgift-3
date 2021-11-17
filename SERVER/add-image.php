@@ -78,7 +78,7 @@ if ($method === "POST" && isset($_FILES["image"])) {
     file_put_contents("DATABAS/posts.json", $tojson);
     // JSON-svar när vi testade med att skicka formuläret via JS
     header("Content-Type: application/json");
-    http_response_code(200);
+    http_response_code(201);
     exit();
 }
 
