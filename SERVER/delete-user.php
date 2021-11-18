@@ -4,21 +4,18 @@
     require_once "functions.php";
 
     // Ladda in vår JSON data från vår fil
-    $users = json_decode(file_get_contents("DATABAS/users.json"), true);
-    $posts = json_decode(file_get_contents("DATABAS/posts.json"), true);
+    $users = loadJSON("DATABAS/users.json");
+    $posts = loadJSON("DATABAS/posts.json");
 
-    // Vilken HTTP metod vi tog emot plus CONTENT TYPE
+    // HTTP-metod
+    // Content-Type
     $method = $_SERVER["REQUEST_METHOD"];
     $contentType = $_SERVER["CONTENT_TYPE"];
-    $server = $_SERVER;
 
     // Hämta ut det som skickades till vår server
     // Måste användas vid alla metoder förutom GET
     $data = file_get_contents("php://input");
     $requestData = json_decode($data, true);
-    // $postID = $requestData["postID"];
-    // $userID = $requestData["userID"];
-
     
     // 1. Kollar om det är rätt metod
     if ($method !== "DELETE") {
