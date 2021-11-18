@@ -77,8 +77,10 @@
         "743f9d008086ee5348b49b5a720e5790f4fca41d": {
             "id": "743f9d008086ee5348b49b5a720e5790f4fca41d",
             "image_url": "http:\/\/localhost:7000\/IMAGES\/POSTS\/64276f2f5d955d20eed98249b50a86268d560805.jpg",
-            "total_likes": 0,
-            "likes": [],
+            "total_likes": 1,
+            "likes": [
+                2
+            ],
             "date": "2021\/11\/17"
         }
     }
