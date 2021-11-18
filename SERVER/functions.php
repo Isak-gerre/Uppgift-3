@@ -87,3 +87,44 @@ function getImages($arrayOfImageIDs)
         # code...
     }
 }
+// Returnerar en uppdaterad array av användarna 
+function removeFromFollower($users, $userID, $following, $followers){
+    $arrayOfUsers = $users[$userID][$following];
+    
+    foreach($arrayOfUsers as $userid){
+        $index = array_search($userid, $arrayOfUsers);
+        array_splice($users["$userid"][$followers], $index, 1);
+    }
+
+    return $users; 
+}
+// Returnerar en uppdaterad array av användarna
+function removeFromFollowing($users, $userID, $following, $followers){
+    $arrayOfUsers = $users[$userID][$followers];
+
+    foreach($arrayOfUsers as $userid){
+        $index = array_search($userid, $arrayOfUsers);
+        array_splice($users["$userid"][$following], $index, 1);
+    } 
+    
+    return $users;
+}
+// Returnerar en uppdaterad array av Posts
+function removeLikes($posts, $userID){
+        
+    foreach($posts as $key => $post){
+        foreach($post["likes"] as $index => $id){
+            if($userID == $id){
+                $likes = $post["likes"];
+                array_splice($likes, $index, 1);
+                $post["likes"] = $likes;
+                
+                $post["total_likes"] -= 1;
+                $posts[$key] = $post;  
+            }
+           
+        }
+    }
+    
+    return $posts;
+}
