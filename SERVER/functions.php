@@ -79,7 +79,6 @@ function getUserPosts($id){
     return $posts;
 }
 // Returnerar all informtion kring all bilder
-
 function getImages($id = "All"){
     echo "HEj";
     $post = loadJSON("DATABAS/posts.json");
@@ -146,4 +145,14 @@ function removeLikes($posts, $userID){
     }
     
     return $posts;
+}
+// Kollar om nyckeln redan finns
+function alreadyTaken($array, $key, $newVariable) {
+    $found = false;
+    foreach($array as $arritem){
+        if($arritem[$key] === $newVariable){
+            $found = true;
+            break;
+        }
+        return $found;
 }
