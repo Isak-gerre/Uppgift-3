@@ -68,8 +68,8 @@
     if (isset($email)) {
         $alreadyTaken = alreadyTaken($users, "email", $email);
 
-        if(!$alreadyTaken && ){
-
+        if(!$alreadyTaken){
+        $users[$userID]["email"] = $requestData["email"];
         } else {
             $message = [
                 "code" => 4,
