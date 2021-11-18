@@ -13,3 +13,25 @@
     - med denna parametern skulle vi då inkludera relationen så här { name: "Arya", owner: { name: "Sebbe" }}. Denna  av 24
     Databasbaserad publiceringHT21parameter ska kunna kombineras med andra parametrar. Det är ok om detta bara fungerar för er ena entitet 
 -->
+
+<?php
+
+error_reporting(-1);
+require_once "access-control.php";
+require_once "functions.php";   
+
+if($method === "GET" && empty($_GET)){
+    getImages();
+}
+
+if($method === "GET" && isset($_GET["id"])){
+    $id = $_GET["id"];
+    var_dump(is_numeric(1));
+    if(!is_numeric(($id))){
+        echo "error";
+        exit();
+    }
+    getImages($id);
+}
+
+?>
