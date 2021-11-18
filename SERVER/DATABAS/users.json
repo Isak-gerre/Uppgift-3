@@ -5,6 +5,7 @@
             "username": "Isak22",
             "email": "isak.gerre@gmail.com",
             "password": "password",
+            "bio": "",
             "followers": [
                 2,
                 3
@@ -25,6 +26,7 @@
             "id": 2,
             "username": "Niklas69",
             "password": "password",
+            "bio": "",
             "followers": [
                 1,
                 3
@@ -48,6 +50,7 @@
             "id": 3,
             "username": "Lina123",
             "password": "password",
+            "bio": "",
             "followers": [
                 1,
                 2
@@ -69,6 +72,7 @@
             "username": "Isak",
             "email": "isak.gerre@gmail.com",
             "password": "password",
+            "bio": "",
             "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/5f76535ac577d5553d5906445a6e5dbb26f47439.jpg",
             "followers": [],
             "following": [],
@@ -80,6 +84,7 @@
             "username": "Isak",
             "email": "isak.gerre@gmail.com",
             "password": "password",
+            "bio": "",
             "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
             "followers": [],
             "following": [],
@@ -91,6 +96,7 @@
             "username": "Isak",
             "email": "isak.gerre@gmail.com",
             "password": "password",
+            "bio": "",
             "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
             "followers": [],
             "following": [],
@@ -102,12 +108,25 @@
             "username": "Isak",
             "email": "isak.gerre@gmail.com",
             "password": "password",
+            "bio": "",
             "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/27246850e92eb328e511c21435b48b521f245cc3.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "8": {
+            "id": "8",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "bio": "\"heeloo\"",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/b19acd4f5af485b28a271b1b4281708d8695d5f6.jpg",
             "followers": [],
             "following": [],
             "posts": [],
             "birthday": "1998"
         }
     },
-    "nextID": 8
+    "nextID": 9
 }

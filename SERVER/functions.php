@@ -58,7 +58,8 @@ function getUsersByIDs($arrayOfIDs)
     return $newArray;
 }
 
-function getUsers(){
+function getUsers()
+{
     $users = loadJSON("DATABAS/users.json");
     var_dump($users["users"]);
     return $users["users"];
@@ -89,26 +90,22 @@ function getUserPosts($id)
 }
 // Returnerar all informtion kring all bilder
 
-function getImages($id = "All"){
-    echo "HEj";
+function getImages($id = "All")
+{
     $post = loadJSON("DATABAS/posts.json");
-    if(isset($id)){
+    if (isset($id)) {
         echo 1;
-        echo "<pre>";
-        var_dump($post["posts"]);
-        echo "</pre>";
-    }
-    else if($id === "All"){
-        echo "<pre>";
-        var_dump($post["posts"]);
-        echo "</pre>";
+        send($post["posts"]);
+    } else if ($id === "All") {
+        send($post["posts"]);
     }
 }
 
-function getImagesByUser(){
+function getImagesByUser()
+{
     $users = loadJSON("DATABAS/users.json");
-    foreach($users as $user){
-        foreach($user["posts"] as $post){
+    foreach ($users as $user) {
+        foreach ($user["posts"] as $post) {
             $post;
         }
     }
