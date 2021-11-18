@@ -70,7 +70,8 @@ if ($method === "POST" && isset($_FILES["image"])) {
         "image_url" => "http://localhost:7000/IMAGES/POSTS/$uniqueFilename.$ext",
         "total_likes" => 0,
         "likes" => [],
-        "date" => date("Y/m/d")
+        "date" => date("Y/m/d"),
+        "caption" => ""
     ];
     $posts[$uniqueID] = $newPost;
     $database["posts"] = $posts;
