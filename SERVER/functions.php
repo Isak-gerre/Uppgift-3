@@ -1,8 +1,7 @@
 <?php
 
 // Skickar data
-function send($data, $statusCode = 200)
-{
+function send($data, $statusCode = 200){
     header("Content-Type: application/json");
     http_response_code($statusCode);
     $json = json_encode($data);
@@ -10,8 +9,7 @@ function send($data, $statusCode = 200)
     exit();
 }
 // Laddar data
-function loadJSON($filename)
-{
+function loadJSON($filename){
     if (!file_exists($filename)) {
         return false;
     }
@@ -19,21 +17,18 @@ function loadJSON($filename)
     return $data;
 }
 // Sparar data
-function saveJSON($filename, $data)
-{
-    file_put_contents("DATABAS/$filename", json_encode($data, JSON_PRETTY_PRINT));
+function saveJSON($filename, $data){
+    file_put_contents($filename, json_encode($data, JSON_PRETTY_PRINT));
     return true;
 }
 // Inspekterar en variabel
-function inspect($variable)
-{
+function inspect($variable){
     echo "<pre>";
     var_dump($variable);
     echo "</pre>";
 }
 // Returnerar näst kommande högsta ID:t
-function nextHighestId($filename)
-{
+function nextHighestId($filename){
     $users = loadJSON($filename);
     $highestId = 0;
     foreach ($users as $key => $user) {
@@ -44,8 +39,7 @@ function nextHighestId($filename)
     return $highestId + 1;
 }
 // Returnerar en array av en eller flera användare
-function getUsersByIDs($arrayOfIDs)
-{
+function getUsersByIDs($arrayOfIDs){
     $users = loadJSON("DATABAS/users.json");
     $newArray = [];
     foreach ($users["users"] as $key => $user) {
@@ -57,36 +51,61 @@ function getUsersByIDs($arrayOfIDs)
     }
     return $newArray;
 }
+
+function getUsers(){
+    $users = loadJSON("DATABAS/users.json");
+    var_dump($users["users"]);
+    return $users["users"];
+}
+
 // Returnerar antalet användare efter argumentet(antal) du skickat med
-function getUsersByLimit($limit)
-{
+function getUsersByLimit($limit){
     $users = loadJSON("DATABAS/users.json");
     array_splice($users, intval($limit));
 
     return $users;
 }
 // Sparar info i en text fil för att kunna notera vad som skett
-function logToLog($message, $error = "INFO")
-{
+function logToLog($message, $error = "INFO"){
     date_default_timezone_set('Europe/Stockholm');
     $date = date('y-m-d H:i:s');
     $output = "[$date][$error] $message \n";
     file_put_contents("log.txt", $output, FILE_APPEND);
 }
 // Returnerar en array av bild ID:n
-function getUserPosts($id)
-{
+function getUserPosts($id){
     $user = getUsersByIDs([$id]);
     $posts = $user[0]["posts"];
     return $posts;
 }
-// Returnerar en array av bilderna utifrån ID:n
-function getImages($arrayOfImageIDs)
-{
-    foreach ($arrayOfImageIDs as $key => $imageID) {
-        # code...
+// Returnerar all informtion kring all bilder
+
+function getImages($id = "All"){
+    echo "HEj";
+    $post = loadJSON("DATABAS/posts.json");
+    if(isset($id)){
+        echo 1;
+        echo "<pre>";
+        var_dump($post["posts"]);
+        echo "</pre>";
+    }
+    else if($id === "All"){
+        echo "<pre>";
+        var_dump($post["posts"]);
+        echo "</pre>";
     }
 }
+
+function getImagesByUser(){
+    $users = loadJSON("DATABAS/users.json");
+    foreach($users as $user){
+        foreach($user["posts"] as $post){
+            $post;
+        }
+    }
+    return $users;
+}
+
 // Returnerar en uppdaterad array av användarna 
 function removeFromFollower($users, $userID, $following, $followers){
     $arrayOfUsers = $users[$userID][$following];
