@@ -38,9 +38,10 @@ if ($contentType !== "application/json") {
 }
 
 // 3. Kollar vilket id som skickats med 
-if (!isset($requestData["userID"])) {
+if (!isset($requestData["userID"]) || !array_key_exists($requestData["userID"], $users)) {
     $message = [
         "code" => 3,
+        "id" => array_key_exists($requestData["userID"], $users),
         "message" => "Who are you?"
     ];
     send($message, 404);
@@ -49,12 +50,14 @@ if (!isset($requestData["userID"])) {
 $userID = $requestData["userID"];
 
 // Kollar vilka nycklar som är ifyllda för att ändra dessa
-$username = $requestData["username"];
-if (isset($username)) {
+if (isset($requestData["username"])) {
+    $username = $requestData["username"];
     $alreadyTaken = alreadyTaken($users, "username", $username);
 
-    if (!$alreadyTaken) {
+    if ($alreadyTaken) {
         $users[$userID]["username"] = $requestData["username"];
+        $usersDB["users"] = $users;
+        saveJSON("DATABAS/users.json", $usersDB);
     } else {
         $message = [
             "code" => 4,
@@ -64,12 +67,14 @@ if (isset($username)) {
     }
 }
 
-$email = $requestData["username"];
-if (isset($email)) {
+if (isset($requestData["email"])) {
+    $email = $requestData["email"];
     $alreadyTaken = alreadyTaken($users, "email", $email);
 
-    if (!$alreadyTaken) {
+    if ($alreadyTaken) {
         $users[$userID]["email"] = $requestData["email"];
+        $usersDB["users"] = $users;
+        saveJSON("DATABAS/users.json", $usersDB);
     } else {
         $message = [
             "code" => 4,
@@ -79,23 +84,32 @@ if (isset($email)) {
     }
 }
 
-    // if (isset($requestData["password"])) {
+if (isset($requestData["password"])) {
+    $users[$userID]["password"] = $requestData["password"];
+    $usersDB["users"] = $users;
+    saveJSON("DATABAS/users.json", $usersDB);
+}
 
-    //     $users[$userID][] = $requestData["username"];
-    // }
+if (isset($requestData["location"])) {
+    $users[$userID]["location"] = $requestData["location"];
+    $usersDB["users"] = $users;
+    saveJSON("DATABAS/users.json", $usersDB);
+}
 
-    // if (isset($requestData["location"])) {
-    //     $users[$userID]["location"] = $requestData["username"];
-    // }
+if (isset($requestData["birthday"])) {
+    $users[$userID]["birthday"] = $requestData["username"];
+    $usersDB["users"] = $users;
+    saveJSON("DATABAS/users.json", $usersDB);
+}
 
-    // if (isset($requestData["birthday"])) {
-    //     $users[$userID] = $requestData["username"];
-    // }
+if (isset($requestData["profile-picture"])) {
+    $users[$userID]["profile-picture"] = $requestData["profile-picture"];
+    $usersDB["users"] = $users;
+    saveJSON("DATABAS/users.json", $usersDB);
+}
 
-    // if (isset($requestData["profile-picture"])) {
-    //     $users[$userID] = $requestData["username"];
-    // }
-
-    // if (isset($requestData["bio"])) {
-    //     $users[$userID] = $requestData["username"];
-    // }
+if (isset($requestData["bio"])) {
+    $users[$userID]["bio"] = $requestData["bio"];
+    $usersDB["users"] = $users;
+    saveJSON("DATABAS/users.json", $usersDB);
+}
