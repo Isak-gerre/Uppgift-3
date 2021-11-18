@@ -15,7 +15,7 @@ if ($method !== "POST") {
 }
 
 if ($method === "POST") {
-    if (!isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"], $_FILES["profile_picture"])) {
+    if (!isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"], $_POST["bio"], $_FILES["profile_picture"])) {
         http_response_code(400);
         echo json_encode(["message" => "All fields has to be filled"]);
         exit();
@@ -31,6 +31,7 @@ if ($method === "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
     $birthday = $_POST["birthday"];
+    $bio = $_POST["bio"];
 
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
@@ -70,6 +71,7 @@ if ($method === "POST") {
         "username" => $username,
         "email" => $email,
         "password" => $password,
+        "bio" => $bio,
         "profile_picture" => "http://localhost:7000/IMAGES/PROFILE/$uniqueFilename.$ext",
         "followers" => [],
         "following" => [],
@@ -86,8 +88,4 @@ if ($method === "POST") {
     http_response_code(201);
     exit();
 }
-
-// file_exists($filename); -> Kontrollera om en fil finns eller inte
-// unlink($filename); -> Radera en fil
-
 ?>
