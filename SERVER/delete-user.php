@@ -8,7 +8,6 @@
     $postsDB = loadJSON("DATABAS/posts.json");
     $users = $usersDB["users"];
     $posts = $postsDB["posts"];
-    
 
     // HTTP-metod
     // Content-Type
