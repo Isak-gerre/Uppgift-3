@@ -4,8 +4,11 @@
     require_once "functions.php";
 
     // Ladda in vår JSON data från vår fil
-    $users = loadJSON("DATABAS/users.json");
-    $posts = loadJSON("DATABAS/posts.json");
+    $usersDB = loadJSON("DATABAS/users.json");
+    $postsDB = loadJSON("DATABAS/posts.json");
+    $users = $usersDB["users"];
+    $posts = $postsDB["posts"];
+    
 
     // HTTP-metod
     // Content-Type
@@ -43,7 +46,7 @@
         send($message, 400);
     }
     // 4. Kollar om profilen finns i databasen 
-    if (!array_key_exists($requestData["userID"], $users["users"])){
+    if (!array_key_exists($requestData["userID"], $users)){
         $message = [
             "code" => 4,
             "message" => "The profile is already deleted"
@@ -60,29 +63,60 @@
     // Radera bilder från image-mappen & databasen
     $userID = $requestData["userID"];
 
-    foreach($users["users"][$userID]["posts"] as $userPost){
-        foreach($posts["posts"] as $index => $post){
-            if($userPost === $post["id"]){
+    // foreach($users[$userID]["posts"] as $userPost){
+    //     foreach($posts as $index => $post){
+    //         if($userPost === $post["id"]){
 
-                $image_url = $post["image_url"];
-                $http_host = $_SERVER["HTTP_HOST"];
-                $directory = str_replace("http://$http_host/", "",  $image_url);
+    //             $image_url = $post["image_url"];
+    //             $http_host = $_SERVER["HTTP_HOST"];
+    //             $directory = str_replace("http://$http_host/", "",  $image_url);
                 
-                // Raderar filenfrån mappen
-                unlink($directory);
+    //             // Raderar filenfrån mappen
+    //             unlink($directory);
 
-                // Raderar bilden från databasen
-                unset($posts["posts"][$post["id"]]);
-            }
+    //             // Raderar bilden från databasen
+    //             unset($posts["posts"][$post["id"]]);
+    //         }
+    //     }
+    // }
+
+    // Raderar likes som användare gillat
+
+    $usersV2 = removeFromFollower($users, $userID, "following", "followers");
+    $usersV3 = removeFromFollowing($usersV2, $userID, "following", "followers");
+    // Raderar hos följare som användaren följer.
+    // Gå igenom followers & following
+    
+    function removeFromFollower($users, $userID, $following, $followers){
+        $arrayOfUsers = $users[$userID][$following];
+        
+        foreach($arrayOfUsers as $userid){
+            $index = array_search($userid, $arrayOfUsers);
+            array_splice($users["$userid"][$followers], $index, 1);
         }
+
+        return $users; 
+    }
+
+    function removeFromFollowing($users, $userID, $following, $followers){
+        $arrayOfUsers = $users[$userID][$followers];
+
+        foreach($arrayOfUsers as $userid){
+            $index = array_search($userid, $arrayOfUsers);
+            array_splice($users["$userid"][$following], $index, 1);
+        } 
+        
+        return $users;
     }
     
     // Raderar en user från databasen
-    unset($users["users"][$userID]);
+    // unset($users["users"][$userID]);
     
     // Uppdaterar filen
-    saveJSON("users.json", $users);
-    saveJSON("posts.json", $posts);
+    $usersDB["users"] = $usersV3;
+    $postsDB["posts"] = $posts;
+    saveJSON("users.json", $usersDB);
+    saveJSON("posts.json", $postsDB);
 
     // Skickar tillbaka meddelande om att allt gick fint
     $message = [
