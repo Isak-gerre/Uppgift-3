@@ -21,7 +21,7 @@ function loadJSON($filename)
 // Sparar data
 function saveJSON($filename, $data)
 {
-    file_put_contents("DATABAS/$filename", json_encode($data, JSON_PRETTY_PRINT));
+    file_put_contents($filename, json_encode($data, JSON_PRETTY_PRINT));
     return true;
 }
 // Inspekterar en variabel
@@ -57,6 +57,13 @@ function getUsersByIDs($arrayOfIDs)
     }
     return $newArray;
 }
+
+function getUsers(){
+    $users = loadJSON("DATABAS/users.json");
+    var_dump($users["users"]);
+    return $users["users"];
+}
+
 // Returnerar antalet användare efter argumentet(antal) du skickat med
 function getUsersByLimit($limit)
 {
@@ -80,10 +87,30 @@ function getUserPosts($id)
     $posts = $user[0]["posts"];
     return $posts;
 }
-// Returnerar en array av bilderna utifrån ID:n
-function getImages($arrayOfImageIDs)
-{
-    foreach ($arrayOfImageIDs as $key => $imageID) {
-        # code...
+// Returnerar all informtion kring all bilder
+
+function getImages($id = "All"){
+    echo "HEj";
+    $post = loadJSON("DATABAS/posts.json");
+    if(isset($id)){
+        echo 1;
+        echo "<pre>";
+        var_dump($post["posts"]);
+        echo "</pre>";
     }
+    else if($id === "All"){
+        echo "<pre>";
+        var_dump($post["posts"]);
+        echo "</pre>";
+    }
+}
+
+function getImagesByUser(){
+    $users = loadJSON("DATABAS/users.json");
+    foreach($users as $user){
+        foreach($user["posts"] as $post){
+            $post;
+        }
+    }
+    return $users;
 }
