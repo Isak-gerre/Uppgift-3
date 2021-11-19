@@ -103,11 +103,11 @@ if (isset($requestData["email"])) {
 // Tänker att man inte ändrar lösenord när man vill ändra
 // i sin profil, det kräver mer säkerhet,
 // slussas iväg till en patch-passworD??!
-// if (isset($requestData["password"])) {
-//     $users[$userID]["password"] = $requestData["password"];
-//     $usersDB["users"] = $users;
-//     saveJSON("DATABAS/users.json", $usersDB);
-// }
+if (isset($requestData["password"])) {
+    $users[$userID]["password"] = $requestData["password"];
+    $usersDB["users"] = $users;
+    saveJSON("DATABAS/users.json", $usersDB);
+}
 
 // Om LOCATION är ifyllt
 if (isset($requestData["location"])) {
@@ -121,8 +121,16 @@ if (isset($requestData["location"])) {
 if (isset($requestData["birthday"])) {
     $birthday = $requestData["birthday"];
 
-    if(!is_int($birthday)){
-        $message["birthday"] = "It has to be an integere";
+    $birthdayInteger = intval($birthday);
+    // Kollar så att det är en siffra 
+    inspect($birthdayInteger);
+    if(!is_int($birthdayInteger) || $birthdayInteger == 1 || $birthdayInteger == 0){
+        $message["birthday"] = "It has to be an integer";
+        $executing = false;
+    }
+    // Kollar så att det är ett rimligt år
+    if($birthdayInteger < 1850 || $birthdayInteger > 2002){
+        $message["birthday"] = "Insert a valid birthday";
         $executing = false;
     }
 
@@ -146,13 +154,13 @@ if (isset($requestData["bio"])) {
     }
 }
 
-
+// Om inte executing har ändrats till FALSE
+// kommer den att utföra ändringarna
+// annars skickar den alla felmeddelanden som kunnat uppstå 
 if($executing) {
     $usersDB["users"] = $users;
     saveJSON("DATABAS/users.json", $usersDB);
     send($message, 404);
-
 } else {
-    send($message, 404);
-
+    send($message);
 }
