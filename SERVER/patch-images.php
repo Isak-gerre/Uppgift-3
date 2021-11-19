@@ -43,7 +43,7 @@
     }
 
     // 3. Kollar om båda värdena finns som nycklar
-    if (!isset($requestData["caption"]) || empty($userID)) {
+    if (!isset($requestData["caption"]) || empty($requestData["caption"])) {
         $message = [
             "code" => 3, 
             "message" => "No caption added"
