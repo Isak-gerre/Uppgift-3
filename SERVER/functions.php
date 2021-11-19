@@ -90,6 +90,7 @@ function getUserPosts($id)
 }
 // Returnerar all informtion kring all bilder
 
+<<<<<<< Updated upstream
 function getImages($id = "All")
 {
     $post = loadJSON("DATABAS/posts.json");
@@ -98,7 +99,22 @@ function getImages($id = "All")
         send($post["posts"]);
     } else if ($id === "All") {
         send($post["posts"]);
+=======
+function getImages(){
+    $post = loadJSON("DATABAS/posts.json");
+    var_dump($post["posts"]);
+}
+
+function getImage($id){
+    $post = loadJSON("DATABAS/posts.json");
+    if(!is_numeric($id)){
+        echo "error not a number!";
+>>>>>>> Stashed changes
     }
+    var_dump(array_search($id, $post["posts"]));
+    // if(array_search($id, $post["posts"])){
+
+    // }
 }
 
 function getImagesByUser()
