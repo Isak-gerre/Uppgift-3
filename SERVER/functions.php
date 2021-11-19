@@ -88,44 +88,71 @@ function getUserPosts($id)
     $posts = $user[0]["posts"];
     return $posts;
 }
+
 // Returnerar all informtion kring all bilder
-
-<<<<<<< Updated upstream
-function getImages($id = "All")
-{
-    $post = loadJSON("DATABAS/posts.json");
-    if (isset($id)) {
-        echo 1;
-        send($post["posts"]);
-    } else if ($id === "All") {
-        send($post["posts"]);
-=======
 function getImages(){
-    $post = loadJSON("DATABAS/posts.json");
-    var_dump($post["posts"]);
+    $posts = loadJSON("DATABAS/posts.json");
+    return $posts;
 }
 
+// Returnerar all informtion kring en bild med ID
 function getImage($id){
-    $post = loadJSON("DATABAS/posts.json");
     if(!is_numeric($id)){
-        echo "error not a number!";
->>>>>>> Stashed changes
+        echo "Error not a number";
+        exit();
     }
-    var_dump(array_search($id, $post["posts"]));
-    // if(array_search($id, $post["posts"])){
-
-    // }
+    if(!isset($posts["posts"][$id])){
+        echo "Error post not found";
+        exit();
+    }
+    $posts = loadJSON("DATABAS/posts.json");
+    
+    return $posts["posts"][$id];
 }
 
-function getImagesByUser()
+// Returnar all information kring ett span med bilder
+function getImageSpan($ids){
+    $posts = loadJSON("DATABAS/posts.json");
+    if(preg_match("/[^,\w]/", $ids)){
+        echo "Error: Only word charachters are allowed (and using commas as seperator)";
+        exit();
+    }
+    $idArray = explode(",", $ids);
+    $posts = loadJSON("DATABAS/posts.json");
+    $spanImages = [];
+    foreach($idArray as $id){
+        if(!isset($posts["posts"][$id])){
+            echo "Error all posts not found";
+            exit();
+        }
+        $spanImages[] = $posts["posts"][$id];
+    }
+    return $spanImages;
+}
+
+//Returnerar alla bilder en användare har
+function getImagesByUser($userID)
 {
     $users = loadJSON("DATABAS/users.json");
-    foreach ($users as $user) {
-        foreach ($user["posts"] as $post) {
-            $post;
-        }
+    $posts = loadJSON("DATABAS/posts.json");
+    if(!is_numeric($userID)){
+        echo "Error: Not a number";
+        exit();
     }
-    return $users;
+    if(!isset($users["users"][$userID])){
+        echo "Error: User not found";
+        exit();
+    }
+    if(isset($_GET["includes"]) && $_GET["includes"]){
+        $imageArray = [];
+        foreach($users["users"][$userID]["posts"] as $id){
+            $imageArray[] = $posts["posts"][$id];
+        }
+        return $imageArray;
+    }
+    else{
+        return $users["users"][$userID]["posts"];
+    }
 }
 
 // Returnerar en uppdaterad array av användarna 
@@ -183,3 +210,4 @@ function alreadyTaken($array, $key, $newVariable)
         return $found;
     }
 }
+
