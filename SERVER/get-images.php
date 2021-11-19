@@ -11,12 +11,16 @@ if ($method === "GET" && empty($_GET)) {
 
 if ($method === "GET" && isset($_GET["id"])) {
     $id = $_GET["id"];
+<<<<<<< Updated upstream
     var_dump(is_numeric(1));
     if (!is_numeric(($id))) {
         echo "error";
         exit();
     }
     getImages($id);
+=======
+    getImage($id);
+>>>>>>> Stashed changes
 }
 
 ?>
