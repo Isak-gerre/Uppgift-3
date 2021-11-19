@@ -10,6 +10,11 @@ $postsDB = loadJSON("DATABAS/posts.json");
 $users = $usersDB["users"];
 $posts = $postsDB["posts"];
 
+// HTTP-metod
+// Content-Type
+$method = $_SERVER["REQUEST_METHOD"];
+$contentType = $_SERVER["CONTENT_TYPE"];
+
 // Hämta ut det som skickades till vår server
 // Måste användas vid alla metoder förutom GET
 $data = file_get_contents("php://input");
@@ -26,6 +31,14 @@ if ($method !== "POST") {
 }
 
 // inspect($_FILES);
+// 2. Kollar om Content-TYPE = Multipar
+if ($contentType !== "multipart/form-data; boundary=X-INSOMNIA-BOUNDARY"){
+    $message = [
+        "code" => 2,
+        "message" => "The API only accepts multipart/form-data"
+    ];
+    send($message, 404);
+}
 
 if ($method === "POST" && isset($_FILES["profile-picture"])) {
 
@@ -53,9 +66,10 @@ if ($method === "POST" && isset($_FILES["profile-picture"])) {
 
     // Hämta filinformation
     $info = pathinfo($filename);
-    inspect($info);
+
     // Hämta ut filändelsen (och gör om till gemener)
     $ext = strtolower($info["extension"]);
+
     // Konvertera från int (siffra) till en sträng,
     // så vi kan slå samman dom nedan.
     $time = (string) time(); // Klockslaget i millisekunder
@@ -78,6 +92,12 @@ if ($method === "POST" && isset($_FILES["profile-picture"])) {
     // Sparar i databasen
     $usersDB["users"] = $users;
     saveJSON("DATABAS/users.json", $usersDB);
+
+    // Meddelande om att allt gick bra
+    $message = [
+        "message" => "You succeded to change your profile"
+    ];
+    send($message);
 }
 
 // file_exists($filename); -> Kontrollera om en fil finns eller inte
