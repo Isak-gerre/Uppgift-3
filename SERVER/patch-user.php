@@ -37,6 +37,7 @@ if ($contentType !== "application/json") {
     send($message, 404);
 }
 
+
 // 3. Kollar vilket id som skickats med 
 if (!isset($requestData["userID"]) || !array_key_exists($requestData["userID"], $users)) {
     $message = [
@@ -49,67 +50,109 @@ if (!isset($requestData["userID"]) || !array_key_exists($requestData["userID"], 
 
 $userID = $requestData["userID"];
 
-// Kollar vilka nycklar som är ifyllda för att ändra dessa
+$executing = true;
+$message = [];
+
+// Om USERNAME nyckeln finns
 if (isset($requestData["username"])) {
     $username = $requestData["username"];
     $alreadyTaken = alreadyTaken($users, "username", $username);
-
+    
+    // Kollar så att användarnamnet inte är upptaget
     if ($alreadyTaken) {
-        $users[$userID]["username"] = $requestData["username"];
-        $usersDB["users"] = $users;
-        saveJSON("DATABAS/users.json", $usersDB);
-    } else {
-        $message = [
-            "code" => 4,
-            "message" => "Username already taken"
-        ];
+        $message["username"] = "Username already taken";
         send($message, 404);
+        $executing = false;
+    } 
+    // Kollar så att användarnamnet är längre än 2 bokstäver
+    if (strlen($username) <= 2){
+        $message["username"] = "Username has to be more than 2 characters";
+        $executing = false;
+    }
+    // Om inget fel uppjagats så ändra vi nyckeln
+    if($executing){
+        $users[$userID]["username"] = $requestData["username"];
+        $message["username"] = "You succeded changing your username";
+
     }
 }
 
+// Om EMAIL nyckeln finns
 if (isset($requestData["email"])) {
     $email = $requestData["email"];
     $alreadyTaken = alreadyTaken($users, "email", $email);
-
+    
+    // Kollar om email redan är taget
     if ($alreadyTaken) {
+        $message["email"] = "Email already taken";
+        $executing = false;
+    }
+    // Kollar så att emailen innehåller "@" och "."
+    if(strpos($email, "@") === false && strpos($email, ".") === false){
+        $message["email"] = "Email has to contain ''@'' and ''.''";
+        $executing = false;
+    }
+    
+    if($executing){
         $users[$userID]["email"] = $requestData["email"];
-        $usersDB["users"] = $users;
-        saveJSON("DATABAS/users.json", $usersDB);
-    } else {
-        $message = [
-            "code" => 4,
-            "message" => "Email already taken"
-        ];
-        send($message, 404);
+        $message["email"] = "You succeded changing your email";
+
+    }
+}
+ 
+// Tänker att man inte ändrar lösenord när man vill ändra
+// i sin profil, det kräver mer säkerhet,
+// slussas iväg till en patch-passworD??!
+// if (isset($requestData["password"])) {
+//     $users[$userID]["password"] = $requestData["password"];
+//     $usersDB["users"] = $users;
+//     saveJSON("DATABAS/users.json", $usersDB);
+// }
+
+// Om LOCATION är ifyllt
+if (isset($requestData["location"])) {
+    if($executing){
+        $users[$userID]["location"] = $requestData["location"];
+        $message["location"] = "You succeded changing your location";
+    } 
+}
+
+// Om BIRTHDAY är ifyllt
+if (isset($requestData["birthday"])) {
+    $birthday = $requestData["birthday"];
+
+    if(!is_int($birthday)){
+        $message["birthday"] = "It has to be an integere";
+        $executing = false;
+    }
+
+    if($executing){
+        $users[$userID]["birthday"] = $requestData["birthday"];
+        $message["birthday"] = "You succeded changing your birthday";
     }
 }
 
-if (isset($requestData["password"])) {
-    $users[$userID]["password"] = $requestData["password"];
-    $usersDB["users"] = $users;
-    saveJSON("DATABAS/users.json", $usersDB);
-}
-
-if (isset($requestData["location"])) {
-    $users[$userID]["location"] = $requestData["location"];
-    $usersDB["users"] = $users;
-    saveJSON("DATABAS/users.json", $usersDB);
-}
-
-if (isset($requestData["birthday"])) {
-    $users[$userID]["birthday"] = $requestData["username"];
-    $usersDB["users"] = $users;
-    saveJSON("DATABAS/users.json", $usersDB);
-}
-
-if (isset($requestData["profile-picture"])) {
-    $users[$userID]["profile-picture"] = $requestData["profile-picture"];
-    $usersDB["users"] = $users;
-    saveJSON("DATABAS/users.json", $usersDB);
-}
+// Detta blir väl mer att ladda upp en ny bild
+// snarare än att ändra den??!
+// if (isset($requestData["profile-picture"])) {
+//     $users[$userID]["profile-picture"] = $requestData["profile-picture"];
+//     $usersDB["users"] = $users;
+//     saveJSON("DATABAS/users.json", $usersDB);
+// }
 
 if (isset($requestData["bio"])) {
-    $users[$userID]["bio"] = $requestData["bio"];
+    if($executing){
+        $users[$userID]["bio"] = $requestData["bio"];
+    }
+}
+
+
+if($executing) {
     $usersDB["users"] = $users;
     saveJSON("DATABAS/users.json", $usersDB);
+    send($message, 404);
+
+} else {
+    send($message, 404);
+
 }

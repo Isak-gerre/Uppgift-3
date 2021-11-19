@@ -3,15 +3,16 @@
     // Ändra totala_likes
     // Ändra likes
 
-
-
     error_reporting(-1);
     require_once "access-control.php";
     require_once "functions.php";
 
     // Ladda in vår JSON data från vår fil
-    $users = loadJSON("DATABAS/users.json");
-    $posts = loadJSON("DATABAS/posts.json");
+    $usersDB = loadJSON("DATABAS/users.json");
+    $postsDB = loadJSON("DATABAS/posts.json");
+    $users = $usersDB["users"];
+    $posts = $postsDB["posts"];
+
 
     // HTTP-metod
     // Content-Type
@@ -53,40 +54,22 @@
 
     
     $postID = $requestData["postID"];
-    $userID = $requestData["userID"];
     $caption = $requestData["caption"];
-    $found = false;
-    $foundUser = null;
 
+    inspect($posts[$postID]["caption"]);
+    inspect($caption);
     // Ändrar caption
-    $posts["posts"][$postID]["caption"] = $caption;
+    $posts[$postID]["caption"] = $caption;
+    inspect($posts[$postID]["caption"]);
+    
+    // Sparar i Databasen
+    $postsDB["posts"] = $posts;
+    inspect($postsDB);
+    saveJSON("DATABAS/posts.json", $postsDB);
+    $message = [
+        "code" => 4,
+        "message" => "SUCCESS"
+    ];
+    send($message);
+    
 
-    foreach ($posts["posts"] as $index => $post) {
-        if ($post["id"] == $postID) {
-            $found = true;
-    
-            if (isset($requestData["caption"])) {
-                $user["caption"] = $caption;
-            }
-    
-            // Uppdatera vår array
-            $posts[$index] = $user;
-            $foundUser = $user;
-            
-            break;
-        }
-    }
-
-    if ($found === false) {
-        send(
-            [
-                "code" => 5,
-                "message" => "The users by `id` does not exist"
-            ],
-            404
-        );
-    }
-    
-    saveJson("users.json", $users);
-    send($foundUser);
-// =============================================================
