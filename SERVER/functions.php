@@ -208,12 +208,12 @@ function removeLikes($posts, $userID)
 // Kollar om nyckeln redan finns
 function alreadyTaken($array, $key, $newVariable)
 {
-    $found = false;
+    $taken = false;
     foreach ($array as $arritem) {
         if ($arritem[$key] === $newVariable) {
-            $found = true;
+            $taken = true;
             break;
         }
-        return $found;
+        return $taken;
     }
 }

@@ -91,7 +91,7 @@
     unset($users["users"][$userID]);
     
     // Uppdaterar filen
-    // $usersDB["users"] = $usersV3;
+    $usersDB["users"] = $usersV3;
     $postsDB["posts"] = $postsV2;
     saveJSON("users.json", $usersDB);
     saveJSON("posts.json", $postsDB);
