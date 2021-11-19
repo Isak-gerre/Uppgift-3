@@ -97,16 +97,15 @@ function getImages(){
 
 // Returnerar all informtion kring en bild med ID
 function getImage($id){
-    if(!is_numeric($id)){
-        echo "Error not a number";
+    $posts = loadJSON("DATABAS/posts.json");
+    if(preg_match("/[^,\w]/", $id)){
+        echo "Error: Only word charachters are allowed (and using commas as seperator)";
         exit();
     }
     if(!isset($posts["posts"][$id])){
         echo "Error post not found";
         exit();
     }
-    $posts = loadJSON("DATABAS/posts.json");
-    
     return $posts["posts"][$id];
 }
 
@@ -148,10 +147,10 @@ function getImagesByUser($userID)
         foreach($users["users"][$userID]["posts"] as $id){
             $imageArray[] = $posts["posts"][$id];
         }
-        return $imageArray;
+        var_dump($imageArray);
     }
     else{
-        return $users["users"][$userID]["posts"];
+        var_dump($users["users"][$userID]["posts"]);
     }
 }
 
