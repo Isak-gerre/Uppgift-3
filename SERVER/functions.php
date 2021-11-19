@@ -107,7 +107,7 @@ function getImage($id){
     if(!isset($posts["posts"][$id])){
          send(
             ["message" => "Error: post not found"],
-            404
+            404);
         exit();
     }
     return $posts["posts"][$id];
