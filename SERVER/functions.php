@@ -98,16 +98,18 @@ function getImages()
 
 // Returnerar all informtion kring en bild med ID
 
-function getImage($id){
+function getImage($id)
+{
     $posts = loadJSON("DATABAS/posts.json");
-    if(preg_match("/[^,\w]/", $id)){
+    if (preg_match("/[^,\w]/", $id)) {
         echo "Error: Only word charachters are allowed (and using commas as seperator)";
         exit();
     }
-    if(!isset($posts["posts"][$id])){
-         send(
+    if (!isset($posts["posts"][$id])) {
+        send(
             ["message" => "Error: post not found"],
             404
+        );
         exit();
     }
     return $posts["posts"][$id];
@@ -155,8 +157,7 @@ function getImagesByUser($userID)
         }
 
         var_dump($imageArray);
-    }
-    else{
+    } else {
         var_dump($users["users"][$userID]["posts"]);
     }
 }
