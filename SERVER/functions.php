@@ -97,19 +97,20 @@ function getImages()
 }
 
 // Returnerar all informtion kring en bild med ID
-function getImage($id)
-{
 
+function getImage($id){
     $posts = loadJSON("DATABAS/posts.json");
-    if (isset($posts["posts"][$id])) {
-        return $posts["posts"][$id];
-    } else {
-        send(
-            ["message" => "Error: post not found"],
-            404
-        );
+    if(preg_match("/[^,\w]/", $id)){
+        echo "Error: Only word charachters are allowed (and using commas as seperator)";
         exit();
     }
+    if(!isset($posts["posts"][$id])){
+         send(
+            ["message" => "Error: post not found"],
+            404
+        exit();
+    }
+    return $posts["posts"][$id];
 }
 
 // Returnar all information kring ett span med bilder
@@ -152,9 +153,11 @@ function getImagesByUser($userID)
         foreach ($users["users"][$userID]["posts"] as $id) {
             $imageArray[] = $posts["posts"][$id];
         }
-        return $imageArray;
-    } else {
-        return $users["users"][$userID]["posts"];
+
+        var_dump($imageArray);
+    }
+    else{
+        var_dump($users["users"][$userID]["posts"]);
     }
 }
 
