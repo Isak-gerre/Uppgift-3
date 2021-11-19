@@ -16,7 +16,7 @@ if ($method === "GET" && isset($_GET["id"])) {
 
 if ($method === "GET" && isset($_GET["span"])) {
     $ids = $_GET["span"];
-    getImageSpan($ids);
+    getImageByIds($ids);
 }
 
 if ($method === "GET" && isset($_GET["user_posts"])) {
