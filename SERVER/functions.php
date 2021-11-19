@@ -111,7 +111,7 @@ function getImage($id){
 }
 
 // Returnar all information kring ett span med bilder
-function getImageSpan($ids){
+function getImageByIds($ids){
     $posts = loadJSON("DATABAS/posts.json");
     if(preg_match("/[^,\w]/", $ids)){
         echo "Error: Only word charachters are allowed (and using commas as seperator)";
