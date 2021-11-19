@@ -90,40 +90,46 @@ function getUserPosts($id)
 }
 
 // Returnerar all informtion kring all bilder
-function getImages(){
+function getImages()
+{
     $posts = loadJSON("DATABAS/posts.json");
     return $posts;
 }
 
 // Returnerar all informtion kring en bild med ID
+
 function getImage($id){
-    if(!is_numeric($id)){
-        echo "Error not a number";
+    $posts = loadJSON("DATABAS/posts.json");
+    if(preg_match("/[^,\w]/", $id)){
+        echo "Error: Only word charachters are allowed (and using commas as seperator)";
         exit();
     }
     if(!isset($posts["posts"][$id])){
-        echo "Error post not found";
+         send(
+            ["message" => "Error: post not found"],
+            404
         exit();
     }
-    $posts = loadJSON("DATABAS/posts.json");
-    
     return $posts["posts"][$id];
 }
 
 // Returnar all information kring ett span med bilder
-function getImageByIds($ids){
+function getImageByIds($ids)
+{
     $posts = loadJSON("DATABAS/posts.json");
-    if(preg_match("/[^,\w]/", $ids)){
+    if (preg_match("/[^,\w]/", $ids)) {
         echo "Error: Only word charachters are allowed (and using commas as seperator)";
         exit();
     }
     $idArray = explode(",", $ids);
     $posts = loadJSON("DATABAS/posts.json");
     $spanImages = [];
-    foreach($idArray as $id){
-        if(!isset($posts["posts"][$id])){
-            echo "Error all posts not found";
-            exit();
+    foreach ($idArray as $id) {
+        if (!isset($posts["posts"][$id])) {
+            header("Content-Type: application/json");
+            http_response_code(404);
+            echo json_encode(["message" => "Error: all posts not found"]);
+            continue;
         }
         $spanImages[] = $posts["posts"][$id];
     }
@@ -135,23 +141,23 @@ function getImagesByUser($userID)
 {
     $users = loadJSON("DATABAS/users.json");
     $posts = loadJSON("DATABAS/posts.json");
-    if(!is_numeric($userID)){
-        echo "Error: Not a number";
+    if (!isset($users["users"][$userID])) {
+        send(
+            ["message" => "Error: User not found"],
+            404
+        );
         exit();
     }
-    if(!isset($users["users"][$userID])){
-        echo "Error: User not found";
-        exit();
-    }
-    if(isset($_GET["includes"]) && $_GET["includes"]){
+    if (isset($_GET["includes"]) && $_GET["includes"]) {
         $imageArray = [];
-        foreach($users["users"][$userID]["posts"] as $id){
+        foreach ($users["users"][$userID]["posts"] as $id) {
             $imageArray[] = $posts["posts"][$id];
         }
-        return $imageArray;
+
+        var_dump($imageArray);
     }
     else{
-        return $users["users"][$userID]["posts"];
+        var_dump($users["users"][$userID]["posts"]);
     }
 }
 
@@ -210,4 +216,3 @@ function alreadyTaken($array, $key, $newVariable)
         return $taken;
     }
 }
-
