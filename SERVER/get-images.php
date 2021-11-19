@@ -11,12 +11,17 @@ if ($method === "GET" && empty($_GET)) {
 
 if ($method === "GET" && isset($_GET["id"])) {
     $id = $_GET["id"];
-    var_dump(is_numeric(1));
-    if (!is_numeric(($id))) {
-        echo "error";
-        exit();
-    }
-    getImages($id);
+    getImage($id);
+}
+
+if ($method === "GET" && isset($_GET["span"])) {
+    $ids = $_GET["span"];
+    getImageByIds($ids);
+}
+
+if ($method === "GET" && isset($_GET["user_posts"])) {
+    $user = $_GET["user_posts"];
+    getImagesByUser($user);
 }
 
 ?>

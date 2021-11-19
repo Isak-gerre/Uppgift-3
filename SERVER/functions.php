@@ -88,28 +88,71 @@ function getUserPosts($id)
     $posts = $user[0]["posts"];
     return $posts;
 }
-// Returnerar all informtion kring all bilder
 
-function getImages($id = "All")
-{
-    $post = loadJSON("DATABAS/posts.json");
-    if (isset($id)) {
-        echo 1;
-        send($post["posts"]);
-    } else if ($id === "All") {
-        send($post["posts"]);
-    }
+// Returnerar all informtion kring all bilder
+function getImages(){
+    $posts = loadJSON("DATABAS/posts.json");
+    return $posts;
 }
 
-function getImagesByUser()
+// Returnerar all informtion kring en bild med ID
+function getImage($id){
+    if(!is_numeric($id)){
+        echo "Error not a number";
+        exit();
+    }
+    if(!isset($posts["posts"][$id])){
+        echo "Error post not found";
+        exit();
+    }
+    $posts = loadJSON("DATABAS/posts.json");
+    
+    return $posts["posts"][$id];
+}
+
+// Returnar all information kring ett span med bilder
+function getImageByIds($ids){
+    $posts = loadJSON("DATABAS/posts.json");
+    if(preg_match("/[^,\w]/", $ids)){
+        echo "Error: Only word charachters are allowed (and using commas as seperator)";
+        exit();
+    }
+    $idArray = explode(",", $ids);
+    $posts = loadJSON("DATABAS/posts.json");
+    $spanImages = [];
+    foreach($idArray as $id){
+        if(!isset($posts["posts"][$id])){
+            echo "Error all posts not found";
+            exit();
+        }
+        $spanImages[] = $posts["posts"][$id];
+    }
+    return $spanImages;
+}
+
+//Returnerar alla bilder en användare har
+function getImagesByUser($userID)
 {
     $users = loadJSON("DATABAS/users.json");
-    foreach ($users as $user) {
-        foreach ($user["posts"] as $post) {
-            $post;
-        }
+    $posts = loadJSON("DATABAS/posts.json");
+    if(!is_numeric($userID)){
+        echo "Error: Not a number";
+        exit();
     }
-    return $users;
+    if(!isset($users["users"][$userID])){
+        echo "Error: User not found";
+        exit();
+    }
+    if(isset($_GET["includes"]) && $_GET["includes"]){
+        $imageArray = [];
+        foreach($users["users"][$userID]["posts"] as $id){
+            $imageArray[] = $posts["posts"][$id];
+        }
+        return $imageArray;
+    }
+    else{
+        return $users["users"][$userID]["posts"];
+    }
 }
 
 // Returnerar en uppdaterad array av användarna 
@@ -167,3 +210,4 @@ function alreadyTaken($array, $key, $newVariable)
         return $taken;
     }
 }
+
