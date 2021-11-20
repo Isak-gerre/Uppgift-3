@@ -28,7 +28,7 @@ if ($method === "POST" && isset($_FILES["image"])) {
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
     if ($error !== 0) {
-        http_response_code(402);
+        http_response_code(400);
         exit();
     }
 
@@ -67,7 +67,7 @@ if ($method === "POST" && isset($_FILES["image"])) {
 
     $newPost = [
         "id" => $uniqueID,
-        "image_url" => "http://localhost:7000/IMAGES/POSTS/$uniqueFilename.$ext",
+        "image_url" => "http://localhost:4000/IMAGES/POSTS/$uniqueFilename.$ext",
         "total_likes" => 0,
         "likes" => [],
         "date" => date("Y/m/d"),
