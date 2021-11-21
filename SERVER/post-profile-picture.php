@@ -15,32 +15,24 @@ $posts = $postsDB["posts"];
 $method = $_SERVER["REQUEST_METHOD"];
 $contentType = $_SERVER["CONTENT_TYPE"];
 
-// Hämta ut det som skickades till vår server
-// Måste användas vid alla metoder förutom GET
+// Data som skickas med metoden (POST)
 $data = file_get_contents("php://input");
 $requestData = json_decode($data, true);
 
-// inspect($_FILES["profile-picture"]);
-// Alla är vällkommna
+// 1. Kollar om metoden stämmer
 if ($method !== "POST") {
-    $message = [
-        "code" => 1,
-        "message" => "Method Not Allowed"
-    ];
+    $message = ["message" => "Method Not Allowed"];
     send($message, 405);
 }
 
-// inspect($_FILES);
-// 2. Kollar om Content-TYPE = Multipar
+// 2. Kollar om Content-TYPE = Multipart/form-data;
 if ($contentType !== "multipart/form-data; boundary=X-INSOMNIA-BOUNDARY"){
-    $message = [
-        "code" => 2,
-        "message" => "The API only accepts multipart/form-data"
-    ];
+    $message = ["message" => "The API only accepts multipart/form-data"];
     send($message, 404);
 }
 
-if ($method === "POST" && isset($_FILES["profile-picture"])) {
+// 3. Kollar om det finns en fil skickad
+if (isset($_FILES["profile-picture"])) {
 
     $file = $_FILES["profile-picture"];
     $filename = $file["name"];
@@ -80,13 +72,15 @@ if ($method === "POST" && isset($_FILES["profile-picture"])) {
     // Samma filnamn som den som laddades upp
     move_uploaded_file($tempname, "IMAGES/PROFILE/$uniqueFilename.$ext");
     
-    // Tar bort den tidigare bilden i databasen
+    // Tar bort den tidigare bilden ur USER-databas
     $profilePicture = $users[$userID]["profile-picture"];
+    // Hämtar vilken localhost siffra som  använts vid öppnandet av terminalen
     $http_host = $_SERVER["HTTP_HOST"];
     $directory = str_replace("http://$http_host/", "",  $profilePicture);
     unlink($directory);
     
-    // Ändrar personens profile-picture i databasen
+    // Ändrar personens profile-picture i databasen, 
+    // till den nya
     $users[$userID]["profile-picture"] = "http://localhost:7000/IMAGES/PROFILE/$uniqueFilename.$ext";
 
     // Sparar i databasen
@@ -99,8 +93,5 @@ if ($method === "POST" && isset($_FILES["profile-picture"])) {
     ];
     send($message);
 }
-
 // file_exists($filename); -> Kontrollera om en fil finns eller inte
-// unlink($filename); -> Radera en fil
-
 ?>
