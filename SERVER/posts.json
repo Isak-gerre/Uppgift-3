@@ -1,0 +1,82 @@
+{
+    "posts": {
+        "7b4f28dc812e020fe7c8dcf76c29ca28cf51559c": {
+            "id": "7b4f28dc812e020fe7c8dcf76c29ca28cf51559c",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/4db538d1dd67c4b1089201a7d968d8a94e1dff4f.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/20",
+            "caption": ""
+        },
+        "b8eb0d3603c977831da1d4c6ca4f6e98df6b3c20": {
+            "id": "b8eb0d3603c977831da1d4c6ca4f6e98df6b3c20",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/a52a40ac044b9a55e20372f7247c2fc2408c74c0.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/20",
+            "caption": ""
+        },
+        "142a36fb2c5b6d06e1cb1c081d0cb5399bb6838a": {
+            "id": "142a36fb2c5b6d06e1cb1c081d0cb5399bb6838a",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/0a4449fef06130bd6a11923640d6e34a5fbde1a0.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/20",
+            "caption": ""
+        },
+        "32f64eac4ec8aed8863d2f9140c15abe907e6d0f": {
+            "id": "32f64eac4ec8aed8863d2f9140c15abe907e6d0f",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/1c2d3e38c5446bf2856046a83f6e9dcbaf923a0e.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/20",
+            "caption": ""
+        },
+        "074a673e4d602a2c9d972be3294c8c52c9ea0ecb": {
+            "id": "074a673e4d602a2c9d972be3294c8c52c9ea0ecb",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/fe0a8ea8cd26b938ad85700456e96d3d551c7be2.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/20",
+            "caption": ""
+        },
+        "5fef6f2cd97c78229490f8014be65e182a34353b": {
+            "id": "5fef6f2cd97c78229490f8014be65e182a34353b",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/491c68a9544cd32064a1a260f091f8e44abb00b5.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/20",
+            "caption": ""
+        },
+        "73412d5a838ff3db3824703ae2950d84ec72fd1a": {
+            "id": "73412d5a838ff3db3824703ae2950d84ec72fd1a",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/3e1df04cf7ab2c9315f9ee40cb0cfbc606d2ea21.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/20",
+            "caption": ""
+        },
+        "cf220049225d3ab4d1f4e212622e4b4dc64cbbc7": {
+            "id": "cf220049225d3ab4d1f4e212622e4b4dc64cbbc7",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/a768a57571488a7ccdf48560904fef47e3bdae62.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/22",
+            "caption": ""
+        },
+        "adcef43368bbd72148b8f2e79dad44b493e3055f": {
+            "id": "adcef43368bbd72148b8f2e79dad44b493e3055f",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/252ef19149d047f987ccb3f23cc6adf5e96fde8c.jpg",
+            "total_likes": 0,
+            "likes": [],
+            "date": "2021\/11\/22",
+            "caption": ""
+        },
+        "743f9d008086ee5348b49b5a720e5790f4fca41d": {
+            "likes": [
+                2
+            ],
+            "total_likes": 1
+        }
+    }
+}
