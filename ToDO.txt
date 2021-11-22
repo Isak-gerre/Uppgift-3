@@ -1,5 +1,0 @@
-1. Kolla över raderandet av filerna, alternativt att spara en nyckel med vägen till bilden istället för hela url. Eller kunna ta en del av en sträng
-2. Kolla om filen existerar innan vi raderar den?
-3. Kollar över Content-Type på post-profile-picture
-3. Det blev post istället för Patch, för använde jag patch, fungerar inte $_FILES
-Eller en post för bildens fil, sedan skickas en ny förfrågan när man trycker på ändring? som gör att det blir PATCH?!
