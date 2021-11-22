@@ -33,13 +33,13 @@ if ($contentType !== "application/json"){
 
 // 3. Kollar om värdet är satt eller tomt
 if (!isset($requestData["userID"]) || empty($requestData["userID"])) {
-    $message = ["message" => "There went something wrong with the key, check that again"];
+    $message = ["message" => "Something went wrong with the key, check that again"];
     send($message, 400);
 }
 
 // 4. Kollar om profilen finns i databasen 
 if (!array_key_exists($requestData["userID"], $users)){
-    $message = ["message" => "The profile is already deleted"];
+    $message = ["message" => "The profile dose not exist"];
     send($message, 404);
 }
 
@@ -52,15 +52,17 @@ if (!array_key_exists($requestData["userID"], $users)){
 $userID = $requestData["userID"];
 foreach($users[$userID]["posts"] as $userPost){
     foreach($posts as $index => $post){
-        if($userPost === $post["id"]){
+        if($userPost == $post["id"]){
             $image_url = $post["image_url"];
             $http_host = $_SERVER["HTTP_HOST"];
             $directory = str_replace("http://$http_host/", "",  $image_url);
             
             // Raderar filenfrån mappen
-            unlink($directory);
+            if(file_exists($directory)){
+                unlink($directory);
+            }
             // Raderar bilden från databasen
-            unset($posts["posts"][$post["id"]]);
+            unset($posts[$post["id"]]);
         }
     }
 }
@@ -74,13 +76,13 @@ $usersV3 = removeUserFromLists($usersV2, $userID, "followers", "following");
 $postsV2 = removeLikes($posts, $userID);
 
 // Raderar en user från databasen
-unset($users["users"][$userID]);
+unset($usersV3[$userID]);
 
 // Uppdaterar filen
 $usersDB["users"] = $usersV3;
 $postsDB["posts"] = $postsV2;
-saveJSON("users.json", $usersDB);
-saveJSON("posts.json", $postsDB);
+saveJSON("DATABAS/users.json", $usersDB);
+saveJSON("DATABAS/posts.json", $postsDB);
 
 // Skickar tillbaka meddelande om att allt gick fint
 $message = [
