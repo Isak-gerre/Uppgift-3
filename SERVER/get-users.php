@@ -18,12 +18,6 @@ if ($method === "GET" && isset($_GET["id"])) {
     send(getUsersById($id));
 }
 
-if ($method === "GET" && isset($_GET["ids"])) {
-    $ids = $_GET["ids"];
-    $array = getImageByIds($ids);
-    send($array["users"], $array["errorCode"]);
-}
-
 if ($method === "GET" && isset($_GET["limit"])) {
     $limit = $_GET["limit"];
     send(getUsersByLimit($limit));
