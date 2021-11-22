@@ -55,7 +55,6 @@ if ($method === "POST") {
     }
 
 
-
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
     if ($error !== 0) {
