@@ -67,16 +67,43 @@ function getUsersByIDs($arrayOfIDs)
 function getUsers()
 {
     $users = loadJSON("DATABAS/users.json");
-    var_dump($users["users"]);
     return $users["users"];
+}
+
+function getUsersById($id)
+{
+    $users = loadJSON("DATABAS/users.json");
+    if(!is_numeric($id)){
+        send(
+            ["message" => "Error: Id needs to be a number"],
+            400
+        );
+        exit();
+    }
+    if(!isset($users["users"][$id])){
+        send(
+            ["message" => "Error: user not found"],
+            404
+        );
+        exit();
+    }
+    else{
+        return $users["users"][$id];
+    }
 }
 
 // Returnerar antalet användare efter argumentet(antal) du skickat med
 function getUsersByLimit($limit)
 {
+    if(!is_numeric($limit) && $limit >= 0){
+        send(
+            ["message" => "Error: limit must be a positive number"],
+            400
+        );
+        exit();
+    }
     $users = loadJSON("DATABAS/users.json");
-    array_splice($users, intval($limit));
-
+    array_splice($users["users"], $limit);
     return $users;
 }
 
@@ -108,8 +135,11 @@ function getImages()
 function getImage($id)
 {
     $posts = loadJSON("DATABAS/posts.json");
-    if (preg_match("/[^,\w]/", $id)) {
-        echo "Error: Only word charachters are allowed (and using commas as seperator)";
+    if (preg_match("/[\W]/", $id)) {
+        send(
+            ["message" => "Error: Only word charachters are allowed"],
+            400
+        );
         exit();
     }
     if (!isset($posts["posts"][$id])) {
@@ -127,7 +157,10 @@ function getImageByIds($ids)
 {
     $posts = loadJSON("DATABAS/posts.json");
     if (preg_match("/[^,\w]/", $ids)) {
-        echo "Error: Only word charachters are allowed (and using commas as seperator)";
+        send(
+            ["message" => "Error: Only word charachters are allowed (and using commas as seperator) OBS: No spaces!"],
+            400
+        );
         exit();
     }
     $idArray = explode(",", $ids);
@@ -145,11 +178,31 @@ function getImageByIds($ids)
     return $spanImages;
 }
 
+function getImagesByLimit($limit)
+{
+    if(!is_numeric($limit) && $limit >= 0){
+        send(
+            ["message" => "Error: limit must be a positive number"],
+            400
+        );
+        exit();
+    }
+    $posts = loadJSON("DATABAS/posts.json");
+    array_splice($posts["posts"], $limit);
+    return $posts;
+}
+
 //Returnerar alla bilder en användare har
 function getImagesByUser($userID)
 {
     $users = loadJSON("DATABAS/users.json");
     $posts = loadJSON("DATABAS/posts.json");
+    if (preg_match("/\d/", $userID)) {
+        send(
+            ["message" => "Error: Only numbers are allowed"],
+            400
+        );
+    }
     if (!isset($users["users"][$userID])) {
         send(
             ["message" => "Error: User not found"],
@@ -163,11 +216,12 @@ function getImagesByUser($userID)
             $imageArray[] = $posts["posts"][$id];
         }
 
-        var_dump($imageArray);
+        return $imageArray;
     } else {
-        var_dump($users["users"][$userID]["posts"]);
+        return $users["users"][$userID]["posts"];
     }
 }
+
 
 // Returnerar en uppdaterad array av användarna 
 // När användaren raderas behöver "following" och "followers"
