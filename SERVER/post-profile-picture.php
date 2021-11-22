@@ -60,6 +60,7 @@ if (isset($_FILES["profile-picture"])) {
     // Hämta filinformation
     $info = pathinfo($filename);
     inspect($info);
+    inspect($file);
     // Hämta ut filändelsen (och gör om till gemener)
     $ext = strtolower($info["extension"]);
 
@@ -73,7 +74,7 @@ if (isset($_FILES["profile-picture"])) {
     // Samma filnamn som den som laddades upp
     move_uploaded_file($tempname, "IMAGES/PROFILE/$uniqueFilename.$ext");
     
-    // Tar bort den tidigare bilden ur USER-databas
+    // Hämtar filnament på tidigare bild
     $profilePicture = $users[$userID]["profile-picture"];
     // Hämtar vilken localhost siffra som  använts vid öppnandet av terminalen
     $http_host = $_SERVER["HTTP_HOST"];
