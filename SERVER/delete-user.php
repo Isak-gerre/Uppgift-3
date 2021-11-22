@@ -39,7 +39,7 @@ if (!isset($requestData["userID"]) || empty($requestData["userID"])) {
 
 // 4. Kollar om profilen finns i databasen 
 if (!array_key_exists($requestData["userID"], $users)){
-    $message = ["message" => "The profile dose not exist"];
+    $message = ["message" => "The profile does not exist"];
     send($message, 404);
 }
 
@@ -57,8 +57,9 @@ foreach($users[$userID]["posts"] as $userPost){
             $http_host = $_SERVER["HTTP_HOST"];
             $directory = str_replace("http://$http_host/", "",  $image_url);
             
-            // Raderar filenfrån mappen
+            // Kollar om filen finns i mappen
             if(file_exists($directory)){
+                // Raderar filenfrån mappen 
                 unlink($directory);
             }
             // Raderar bilden från databasen

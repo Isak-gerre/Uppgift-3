@@ -4,6 +4,7 @@ error_reporting(-1);
 require_once "access-control.php";
 require_once "functions.php";
 
+
 // Alla är vällkommna
 if ($method !== "POST") {
     header("Content-Type: application/json");
@@ -24,13 +25,33 @@ if ($method === "POST") {
     $tempname = $profileImage["tmp_name"];
     $size = $profileImage["size"];
     $error = $profileImage["error"];
-
+    
     $location = $_POST["location"];
     $email = $_POST["email"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $birthday = $_POST["birthday"];
     $bio = $_POST["bio"];
+    
+    $database = json_decode(file_get_contents("DATABAS/users.json"), true);
+    $users = $database["users"];
+    $userID = $database["nextID"];
+    
+    $alreadyTakenEmail = alreadyTaken($users, "email", $email);
+    $alreadyTakenUsername = alreadyTaken($users, "username", $username);
+    
+    // Kollar om email redan är taget
+    if ($alreadyTakenEmail) {
+        $message["message"] = "Email already in use";
+        send($message, 400);
+    }
+    
+    if ($alreadyTakenUsername) {
+        $message["message"] = "Username already in use";
+        send($message, 400);
+    }
+
+
 
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
@@ -64,9 +85,6 @@ if ($method === "POST") {
 
 
     //Lägg till bilden i databasen
-    $database = json_decode(file_get_contents("DATABAS/users.json"), true);
-    $users = $database["users"];
-    $userID = $database["nextID"];
 
     $newUser = [
         "id" => "$userID",

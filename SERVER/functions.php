@@ -48,20 +48,6 @@ function nextHighestId($filename)
     return $highestId + 1;
 }
 
-// Returnerar en array av en eller flera användare
-function getUsersByIDs($arrayOfIDs)
-{
-    $users = loadJSON("DATABAS/users.json");
-    $newArray = [];
-    foreach ($users["users"] as $key => $user) {
-        foreach ($arrayOfIDs as $id) {
-            if ($user["id"] == $id) {
-                $newArray[] = $users["users"][$key];
-            }
-        }
-    }
-    return $newArray;
-}
 
 // Hämtar alla användare
 function getUsers()
@@ -122,6 +108,21 @@ function getUserPosts($id)
     $user = getUsersByIDs([$id]);
     $posts = $user[0]["posts"];
     return $posts;
+}
+
+// Returnerar en array av en eller flera användare
+function getUsersByIDs($arrayOfIDs)
+{
+    $users = loadJSON("DATABAS/users.json");
+    $newArray = [];
+    foreach ($users["users"] as $key => $user) {
+        foreach ($arrayOfIDs as $id) {
+            if ($user["id"] == $id) {
+                $newArray[] = $users["users"][$key];
+            }
+        }
+    }
+    return $newArray;
 }
 
 // Returnerar all informtion kring all bilder
