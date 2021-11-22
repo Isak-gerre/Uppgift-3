@@ -16,7 +16,8 @@ if ($method === "GET" && isset($_GET["id"])) {
 
 if ($method === "GET" && isset($_GET["ids"])) {
     $ids = $_GET["ids"];
-    send(getImageByIds($ids));
+    $array = getImageByIds($ids);
+    send($array["images"], $array["errorCode"]);
 }
 
 if ($method === "GET" && isset($_GET["user_posts"])) {
