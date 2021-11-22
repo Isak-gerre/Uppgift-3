@@ -191,7 +191,7 @@ function getImagesByUser($userID)
 {
     $users = loadJSON("DATABAS/users.json");
     $posts = loadJSON("DATABAS/posts.json");
-    if (preg_match("/\d/", $userID)) {
+    if (preg_match("/\D/", $userID)) {
         send(
             ["message" => "Error: Only numbers are allowed"],
             400
