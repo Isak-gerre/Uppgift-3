@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(-1);
 require_once "access-control.php";
 require_once "functions.php";
@@ -14,33 +15,26 @@ $posts = $postsDB["posts"];
 $method = $_SERVER["REQUEST_METHOD"];
 $contentType = $_SERVER["CONTENT_TYPE"];
 
-// Hämta ut det som skickades till vår server
-// Måste användas vid alla metoder förutom GET
+// Data som skickas med metoden (PATCH)
 $data = file_get_contents("php://input");
 $requestData = json_decode($data, true);
 
 // 1. Kollar om det är rätt metod
 if ($method !== "PATCH") {
-    $message = [
-        "code" => 1,
-        "message" => "Method Not Allowed"
-    ];
+    $message = ["message" => "Method Not Allowed"];
     send($message, 405);
 }
 
 // 2. Kollar om Content-TYPE = JSON
 if ($contentType !== "application/json") {
-    $message = [
-        "code" => 2,
-        "message" => "The API only accepts JSON"
-    ];
+    $message = ["message" => "The API only accepts JSON"];
     send($message, 404);
 }
 
-// 3. Kollar vilket id som skickats med 
+
+// 3. Kollar vilket ID som skickats med 
 if (!isset($requestData["userID"]) || !array_key_exists($requestData["userID"], $users)) {
     $message = [
-        "code" => 3,
         "id" => array_key_exists($requestData["userID"], $users),
         "message" => "Who are you?"
     ];
@@ -49,67 +43,108 @@ if (!isset($requestData["userID"]) || !array_key_exists($requestData["userID"], 
 
 $userID = $requestData["userID"];
 
-// Kollar vilka nycklar som är ifyllda för att ändra dessa
-if (isset($requestData["username"])) {
+$executing = true;
+$message = [];
+
+// Om USERNAME nyckeln finns och inte tomt
+if (isset($requestData["username"]) && !empty($requestData["username"])) {
     $username = $requestData["username"];
     $alreadyTaken = alreadyTaken($users, "username", $username);
-
+    
+    // Kollar så att användarnamnet inte är upptaget
     if ($alreadyTaken) {
-        $users[$userID]["username"] = $requestData["username"];
-        $usersDB["users"] = $users;
-        saveJSON("DATABAS/users.json", $usersDB);
-    } else {
-        $message = [
-            "code" => 4,
-            "message" => "Username already taken"
-        ];
+        $message["username"] = "Username already taken";
         send($message, 404);
+        $executing = false;
+    } 
+    // Kollar så att användarnamnet är längre än 2 bokstäver
+    if (strlen($username) <= 2){
+        $message["username"] = "Username has to be more than 2 characters";
+        $executing = false;
+    }
+    // Om inget fel upptäckts så ändra vi nyckeln
+    if($executing){
+        $users[$userID]["username"] = $requestData["username"];
+        $message["username"] = "You succeded changing your username";
+
     }
 }
 
-if (isset($requestData["email"])) {
+// Om EMAIL nyckeln finns och inte tomt
+if (isset($requestData["email"]) && !empty($requestData["email"])) {
     $email = $requestData["email"];
     $alreadyTaken = alreadyTaken($users, "email", $email);
-
+    
+    // Kollar om email redan är taget
     if ($alreadyTaken) {
+        $message["email"] = "Email already taken";
+        $executing = false;
+    }
+    // Kollar så att emailen innehåller "@" och "."
+    if(strpos($email, "@") === false && strpos($email, ".") === false){
+        $message["email"] = "Email has to contain ''@'' and ''.''";
+        $executing = false;
+    }
+    // Om inget fel upptäckts så ändra vi nyckeln
+    if($executing){
         $users[$userID]["email"] = $requestData["email"];
-        $usersDB["users"] = $users;
-        saveJSON("DATABAS/users.json", $usersDB);
-    } else {
-        $message = [
-            "code" => 4,
-            "message" => "Email already taken"
-        ];
-        send($message, 404);
+        $message["email"] = "You succeded changing your email";
+
     }
 }
-
-if (isset($requestData["password"])) {
+ 
+// Om PASSWORD är ifyllt och inte tomt
+if (isset($requestData["password"]) && !empty($requestData["password"])) {
     $users[$userID]["password"] = $requestData["password"];
     $usersDB["users"] = $users;
     saveJSON("DATABAS/users.json", $usersDB);
 }
 
+// Om LOCATION är ifyllt och inte tomt
 if (isset($requestData["location"])) {
-    $users[$userID]["location"] = $requestData["location"];
-    $usersDB["users"] = $users;
-    saveJSON("DATABAS/users.json", $usersDB);
+    if($executing){
+        $users[$userID]["location"] = $requestData["location"];
+        $message["location"] = "You succeded changing your location";
+    } 
 }
 
-if (isset($requestData["birthday"])) {
-    $users[$userID]["birthday"] = $requestData["username"];
-    $usersDB["users"] = $users;
-    saveJSON("DATABAS/users.json", $usersDB);
+// Om BIRTHDAY är ifyllt och inte tomt
+if (isset($requestData["birthday"]) && !empty($requestData["birthday"])) {
+    $birthday = $requestData["birthday"];
+
+    $birthdayInteger = intval($birthday);
+    // Kollar så att det är en siffra 
+    inspect($birthdayInteger);
+    if(!is_int($birthdayInteger) || $birthdayInteger == 1 || $birthdayInteger == 0){
+        $message["birthday"] = "It has to be an integer";
+        $executing = false;
+    }
+    // Kollar så att det är ett rimligt år
+    if($birthdayInteger < 1850 || $birthdayInteger > 2002){
+        $message["birthday"] = "Insert a valid birthday";
+        $executing = false;
+    }
+    // Om inget fel upptäckts så ändra vi nyckeln
+    if($executing){
+        $users[$userID]["birthday"] = $requestData["birthday"];
+        $message["birthday"] = "You succeded changing your birthday";
+    }
 }
 
-if (isset($requestData["profile-picture"])) {
-    $users[$userID]["profile-picture"] = $requestData["profile-picture"];
-    $usersDB["users"] = $users;
-    saveJSON("DATABAS/users.json", $usersDB);
+// Om BIO är ifyllt och inte tomt
+if (isset($requestData["bio"]) && !empty($requestData["bio"])) {
+    if($executing){
+        $users[$userID]["bio"] = $requestData["bio"];
+    }
 }
 
-if (isset($requestData["bio"])) {
-    $users[$userID]["bio"] = $requestData["bio"];
+// Om inte executing har ändrats till FALSE
+// kommer den att utföra ändringarna
+// annars skickar den alla felmeddelanden som kunnat uppstå 
+if($executing) {
     $usersDB["users"] = $users;
     saveJSON("DATABAS/users.json", $usersDB);
+    send($message, 404);
+} else {
+    send($message);
 }

@@ -9,6 +9,7 @@ function send($data, $statusCode = 200)
     echo $json;
     exit();
 }
+
 // Laddar data
 function loadJSON($filename)
 {
@@ -18,12 +19,14 @@ function loadJSON($filename)
     $data = json_decode(file_get_contents($filename), true);
     return $data;
 }
+
 // Sparar data
 function saveJSON($filename, $data)
 {
     file_put_contents($filename, json_encode($data, JSON_PRETTY_PRINT));
     return true;
 }
+
 // Inspekterar en variabel
 function inspect($variable)
 {
@@ -31,6 +34,7 @@ function inspect($variable)
     var_dump($variable);
     echo "</pre>";
 }
+
 // Returnerar näst kommande högsta ID:t
 function nextHighestId($filename)
 {
@@ -43,6 +47,7 @@ function nextHighestId($filename)
     }
     return $highestId + 1;
 }
+
 // Returnerar en array av en eller flera användare
 function getUsersByIDs($arrayOfIDs)
 {
@@ -58,6 +63,7 @@ function getUsersByIDs($arrayOfIDs)
     return $newArray;
 }
 
+// Hämtar alla användare
 function getUsers()
 {
     $users = loadJSON("DATABAS/users.json");
@@ -73,6 +79,7 @@ function getUsersByLimit($limit)
 
     return $users;
 }
+
 // Sparar info i en text fil för att kunna notera vad som skett
 function logToLog($message, $error = "INFO")
 {
@@ -81,6 +88,7 @@ function logToLog($message, $error = "INFO")
     $output = "[$date][$error] $message \n";
     file_put_contents("log.txt", $output, FILE_APPEND);
 }
+
 // Returnerar en array av bild ID:n
 function getUserPosts($id)
 {
@@ -99,17 +107,19 @@ function getImages()
 // Returnerar all informtion kring en bild med ID
 function getImage($id)
 {
-
     $posts = loadJSON("DATABAS/posts.json");
-    if (isset($posts["posts"][$id])) {
-        return $posts["posts"][$id];
-    } else {
+    if (preg_match("/[^,\w]/", $id)) {
+        echo "Error: Only word charachters are allowed (and using commas as seperator)";
+        exit();
+    }
+    if (!isset($posts["posts"][$id])) {
         send(
             ["message" => "Error: post not found"],
             404
         );
         exit();
     }
+    return $posts["posts"][$id];
 }
 
 // Returnar all information kring ett span med bilder
@@ -152,37 +162,32 @@ function getImagesByUser($userID)
         foreach ($users["users"][$userID]["posts"] as $id) {
             $imageArray[] = $posts["posts"][$id];
         }
-        return $imageArray;
+
+        var_dump($imageArray);
     } else {
-        return $users["users"][$userID]["posts"];
+        var_dump($users["users"][$userID]["posts"]);
     }
 }
 
 // Returnerar en uppdaterad array av användarna 
-function removeFromFollower($users, $userID, $following, $followers)
+// När användaren raderas behöver "following" och "followers"
+// arrayen att justeras, detta funktion gör detta åt oss beroende på
+// vilken sträng som skickas med som key1 och key2.
+function removeUserFromLists($users, $userID, $key1, $key2)
 {
-    $arrayOfUsers = $users[$userID][$following];
+    $arrayOfUsers = $users[$userID][$key1];
 
     foreach ($arrayOfUsers as $userid) {
         $index = array_search($userid, $arrayOfUsers);
-        array_splice($users["$userid"][$followers], $index, 1);
+        array_splice($users["$userid"][$key2], $index, 1);
     }
 
     return $users;
 }
-// Returnerar en uppdaterad array av användarna
-function removeFromFollowing($users, $userID, $following, $followers)
-{
-    $arrayOfUsers = $users[$userID][$followers];
 
-    foreach ($arrayOfUsers as $userid) {
-        $index = array_search($userid, $arrayOfUsers);
-        array_splice($users["$userid"][$following], $index, 1);
-    }
-
-    return $users;
-}
 // Returnerar en uppdaterad array av Posts
+// Funktionen raderar personens id ur "likes" arrayen i varje post
+// samtidigt ändrar den total_likes 
 function removeLikes($posts, $userID)
 {
 
@@ -201,15 +206,18 @@ function removeLikes($posts, $userID)
 
     return $posts;
 }
+
 // Kollar om nyckeln redan finns
+// Skickar tillbaka true eller false beroende på om
+// variabeln som skickas med är ett upptaget sådant
 function alreadyTaken($array, $key, $newVariable)
 {
-    $found = false;
+    $taken = false;
     foreach ($array as $arritem) {
         if ($arritem[$key] === $newVariable) {
-            $found = true;
+            $taken = true;
             break;
         }
-        return $found;
+        return $taken;
     }
 }
