@@ -39,7 +39,16 @@
                 "32f64eac4ec8aed8863d2f9140c15abe907e6d0f",
                 "074a673e4d602a2c9d972be3294c8c52c9ea0ecb",
                 "5fef6f2cd97c78229490f8014be65e182a34353b",
-                "73412d5a838ff3db3824703ae2950d84ec72fd1a"
+                "73412d5a838ff3db3824703ae2950d84ec72fd1a",
+                "ed140f0d800f31faba840a5070d50f036979ca1d",
+                "121c14d8c11a208fab73900108cfd20a99810776",
+                "323cb9a57fea60915b62c8cec602d8d4584f4c72",
+                "0b86a2bf71e38a461c88a9ceb873ac581975176a",
+                "8ce6e23e00e54aaa8d2012372336d811eb760130",
+                "d3e4f49ff79a26a13fa85e9dd25fed574daee78b",
+                "71a3c127bb5c12fe5f99e56d77f412a3c345b4c9",
+                "cf220049225d3ab4d1f4e212622e4b4dc64cbbc7",
+                "adcef43368bbd72148b8f2e79dad44b493e3055f"
             ],
             "location": "Malm\u00f6",
             "birthday": "1998",
@@ -123,7 +132,43 @@
             "following": [],
             "posts": [],
             "birthday": "1998"
+        },
+        "9": {
+            "id": "9",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "bio": "heeloo",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/3f02c42006408b0bfe3bcb559a540da6d5501c1b.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "10": {
+            "id": "10",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "bio": "henloo",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/7f4362949144211be878ac2aa7964fae93a25951.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "11": {
+            "id": "11",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "bio": "henloo",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/da67efcc89cfa330b7b1ba71945184ecab91eb5e.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
         }
     },
-    "nextID": 9
+    "nextID": 12
 }

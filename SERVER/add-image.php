@@ -1,11 +1,9 @@
-<!-- 
-    POST
-    •Kunna skapa en entitet. Ni ska kontrollera att alla fält existerar och inte är tomma. Skulle något saknas ska ni svara med något relevant meddelande så att användaren av ert API förstår vad som gått fel. Glöm inte att tänka på eventuella relationer som måste inkluderas i användarens förfrågan.
--->
+
 <?php
 
 error_reporting(-1);
 require_once "access-control.php";
+require_once "functions.php";
 
 // Alla är vällkommna
 if ($method !== "POST") {
@@ -15,28 +13,52 @@ if ($method !== "POST") {
 }
 
 if ($method === "POST" && isset($_FILES["image"])) {
+    $usersDB = json_decode(file_get_contents("DATABAS/users.json"), true);
+
+
     $file = $_FILES["image"];
     $filename = $file["name"];
     $tempname = $file["tmp_name"];
     $size = $file["size"];
     $error = $file["error"];
 
+
+    if (!isset($_POST["id"])) {
+        send(
+            ["message" => "'Id' has to be sent in request"],
+            400
+        );
+        exit();
+    }
     $caption = $_POST["caption"];
     $userID = $_POST["id"];
-
-
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
     if ($error !== 0) {
-        http_response_code(400);
+        send(
+            ["message" => "Something went wrong"],
+            409
+        );
         exit();
     }
 
     // // Filen får inte vara större än ~1MB
-    // if ($size > (1 * 1024 * 1024)) {
-    //     http_response_code(400);
-    //     exit();
-    // }
+    if ($size > (1 * 1024 * 1024)) {
+        send(
+            ["message" => "The image is too large"],
+            406
+        );
+        exit();
+    }
+    // Kollar om användaren finns
+    if (!array_key_exists($userID, $usersDB["users"])) {
+        send(
+            ["message" => "The user with that ID does not exist"],
+            404
+        );
+        exit();
+    }
+
 
 
     // Hämta filinformation
@@ -54,7 +76,6 @@ if ($method === "POST" && isset($_FILES["image"])) {
     move_uploaded_file($tempname, "IMAGES/POSTS/$uniqueFilename.$ext");
 
     // Lägg till postID i användaren. 
-    $usersDB = json_decode(file_get_contents("DATABAS/users.json"), true);
     $userPosts = $usersDB["users"][$userID]["posts"];
     $userPosts[] = $uniqueID;
     $usersDB["users"][$userID]["posts"] = $userPosts;
@@ -75,12 +96,12 @@ if ($method === "POST" && isset($_FILES["image"])) {
     ];
     $posts[$uniqueID] = $newPost;
     $database["posts"] = $posts;
-    $tojson = json_encode($database, JSON_PRETTY_PRINT);
-    file_put_contents("DATABAS/posts.json", $tojson);
+    saveJSON("DATABAS/posts.json", $database);
     // JSON-svar när vi testade med att skicka formuläret via JS
-    header("Content-Type: application/json");
-    http_response_code(201);
-    exit();
+    send(
+        ["Post Created" => $newPost],
+        201
+    );
 }
 
 // file_exists($filename); -> Kontrollera om en fil finns eller inte

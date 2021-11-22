@@ -1,11 +1,8 @@
-<!-- 
-    POST
-    •Kunna skapa en entitet. Ni ska kontrollera att alla fält existerar och inte är tomma. Skulle något saknas ska ni svara med något relevant meddelande så att användaren av ert API förstår vad som gått fel. Glöm inte att tänka på eventuella relationer som måste inkluderas i användarens förfrågan.
--->
 <?php
 
 error_reporting(-1);
 require_once "access-control.php";
+require_once "functions.php";
 
 // Alla är vällkommna
 if ($method !== "POST") {
@@ -16,8 +13,10 @@ if ($method !== "POST") {
 
 if ($method === "POST") {
     if (!isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"], $_POST["bio"], $_FILES["profile_picture"])) {
-        http_response_code(400);
-        echo json_encode(["message" => "All fields has to be filled"]);
+        send(
+            ["message" => "All fields has to be filled"],
+            400
+        );
         exit();
     }
     $profileImage = $_FILES["profile_picture"];
@@ -36,15 +35,18 @@ if ($method === "POST") {
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
     if ($error !== 0) {
-        http_response_code(402);
+        send(
+            ["message" => "Something went wrong"],
+            409
+        );
         exit();
     }
 
     // // Filen får inte vara större än ~1MB
-    // if ($size > (1 * 1024 * 1024)) {
-    //     http_response_code(400);
-    //     exit();
-    // }
+    if ($size > (1 * 1024 * 1024)) {
+        http_response_code(400);
+        exit();
+    }
 
 
     // Hämta filinformation
@@ -81,11 +83,11 @@ if ($method === "POST") {
     $users[$database["nextID"]] = $newUser;
     $database["nextID"] = $database["nextID"] + 1;
     $database["users"] = $users;
-    $tojson = json_encode($database, JSON_PRETTY_PRINT);
-    file_put_contents("DATABAS/users.json", $tojson);
+    saveJSON("DATABAS/users.json", $database);
     // JSON-svar när vi testade med att skicka formuläret via JS
-    header("Content-Type: application/json");
-    http_response_code(201);
+    send(
+        ["User created" => $newUser],
+        201
+    );
     exit();
 }
-?>
