@@ -43,6 +43,11 @@ if ($method === "POST") {
     $alreadyTakenEmail = alreadyTaken($users, "email", $email);
     $alreadyTakenUsername = alreadyTaken($users, "username", $username);
 
+    // Kollar så att emailen innehåller "@" och "."
+    if (strpos($email, "@") === false && strpos($email, ".") === false) {
+        $message["email"] = "Email has to contain ''@'' and ''.''";
+        $executing = false;
+    }
     // Kollar om email redan är taget
     if ($alreadyTakenEmail) {
         $message["message"] = "Email already in use";

@@ -6,9 +6,17 @@
             "email": "Sebbe@gmail.com",
             "password": "Hund",
             "bio": "Gillar hundar mer \u00e4n sin sambo",
-            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/8d01d1877ab917a3cdaa8e135a83a71d1f29c932.jpg",
-            "followers": [2, 3, 5],
-            "following": [2, 3, 5],
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/b03e13938e16d06f9616d59cf34bee81bc1bafb7.jpg",
+            "followers": [
+                2,
+                3,
+                5
+            ],
+            "following": [
+                2,
+                3,
+                5
+            ],
             "posts": [
                 "edb75c76c43e70fa939cd6dbe51d9ea7c1467356",
                 "5612f3beb9e0f651e5011b286bdd65a75c820aa9"
@@ -21,9 +29,17 @@
             "email": "isak@gmail.com",
             "password": "Oboy",
             "bio": "Gillar oboy",
-            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/2991bbb4dea06c70ea428a70086846c2d2c871e8.jpg",
-            "followers": [1, 4, 5],
-            "following": [1, 4, 5],
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/9b67af4a6c47b5041c1423e3ca26746e3fad30c0.jpg",
+            "followers": [
+                1,
+                4,
+                5
+            ],
+            "following": [
+                1,
+                4,
+                5
+            ],
             "posts": [
                 "1a29550b394c64586175cc1188718414681eb310",
                 "441d0a763d396672f74b50ab0fe027972ce49c0f"
@@ -37,8 +53,16 @@
             "password": "S\u00f6mn",
             "bio": "Gillar s\u00f6mn",
             "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/b03e13938e16d06f9616d59cf34bee81bc1bafb7.jpg",
-            "followers": [4, 1, 5],
-            "following": [4, 1, 5],
+            "followers": [
+                4,
+                1,
+                5
+            ],
+            "following": [
+                4,
+                1,
+                5
+            ],
             "posts": [
                 "08dcae83a1a64e6c148b239d2dbeb43632c86336",
                 "ff645d7e3e3ffd7c724fa9e32f5654a64782911b"
@@ -52,8 +76,15 @@
             "password": "Stavbitch",
             "bio": "Ov\u00e4n med Stickan",
             "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/3094537e44d6445bc14fbbb8d51f49854aeed531.jpg",
-            "followers": [3, 2, 5],
-            "following": [3, 2],
+            "followers": [
+                3,
+                2,
+                5
+            ],
+            "following": [
+                3,
+                2
+            ],
             "posts": [
                 "600fa6f0ba8d330610fc35a67a80490340b4c1f8",
                 "c2cc12f340a655eabe15d38ca131285dd72921ac"
@@ -67,8 +98,17 @@
             "password": "Test",
             "bio": "Test",
             "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/e19c3c272e60112df3cbe29541c0626872674abb.jpg",
-            "followers": [1, 2, 3],
-            "following": [1, 2, 3, 4],
+            "followers": [
+                1,
+                2,
+                3
+            ],
+            "following": [
+                1,
+                2,
+                3,
+                4
+            ],
             "posts": [
                 "ba5754902651ffbb1c48cd4449d318327cc4c16f",
                 "6cbf9ea1c49bd2a279cbebd782154d85eee264d6"

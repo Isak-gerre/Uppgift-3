@@ -58,7 +58,11 @@ if (isset($requestData["userID"], $requestData["postID"], $requestData["removing
         $posts[$postID]["likes"] = $likes;
         $posts[$postID]["total_likes"] -= 1;
         $postsDB["posts"] = $posts;
-        saveJSON("posts.json", $postsDB);
+        saveJSON("DATABAS/posts.json", $postsDB);
+        send(
+            ["message" => "Disliked post"],
+            200
+        );
     } else {
         $likes = $posts[$postID]["likes"];
         if (!in_array($userID, $likes)) {
@@ -66,7 +70,11 @@ if (isset($requestData["userID"], $requestData["postID"], $requestData["removing
             $posts[$postID]["likes"] = $likes;
             $posts[$postID]["total_likes"] += 1;
             $postsDB["posts"] = $posts;
-            saveJSON("posts.json", $postsDB);
+            saveJSON("DATABAS/posts.json", $postsDB);
+            send(
+                ["message" => "Liked post"],
+                200
+            );
         } else {
             send(
                 ["message" => "That user already likes that post!"],

@@ -4,7 +4,13 @@
             "id": "edb75c76c43e70fa939cd6dbe51d9ea7c1467356",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/283f960daa311ec9800732170fba9526d6e8169c.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "as"
         },
@@ -12,7 +18,13 @@
             "id": "5612f3beb9e0f651e5011b286bdd65a75c820aa9",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/bd3ec115f64960cd3e2c281a7bbb0f1b39e0c962.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "asdasd"
         },
@@ -20,7 +32,13 @@
             "id": "1a29550b394c64586175cc1188718414681eb310",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/18c36bbe7c059498be3e4a19ccae6fca60167f65.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "asssss"
         },
@@ -28,7 +46,13 @@
             "id": "441d0a763d396672f74b50ab0fe027972ce49c0f",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/8c07e49a51d454032e36a1f4264918650f2e9b4b.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "sads"
         },
@@ -36,7 +60,13 @@
             "id": "08dcae83a1a64e6c148b239d2dbeb43632c86336",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/750b7f67539eff1878301fa58777d7d88dfdcfad.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "adadsd"
         },
@@ -44,7 +74,13 @@
             "id": "ff645d7e3e3ffd7c724fa9e32f5654a64782911b",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/68fd3913616d143cb40fbce7c587c08b81af706a.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "as"
         },
@@ -52,7 +88,13 @@
             "id": "600fa6f0ba8d330610fc35a67a80490340b4c1f8",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/85a64a0bf6c409c62068c97b1cc4e4da3ec6b3bb.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "asdasd"
         },
@@ -60,7 +102,13 @@
             "id": "c2cc12f340a655eabe15d38ca131285dd72921ac",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/a0e25eb4fa9677af6536312fef42180ae0803cca.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "asdasd"
         },
@@ -68,17 +116,28 @@
             "id": "ba5754902651ffbb1c48cd4449d318327cc4c16f",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/6b9a3f5045fe3cc2ea675651cd8292ab3950a282.jpg",
             "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "likes": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
             "caption": "Hej"
         },
         "6cbf9ea1c49bd2a279cbebd782154d85eee264d6": {
             "id": "6cbf9ea1c49bd2a279cbebd782154d85eee264d6",
             "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/45608819a2276925abd3e4b1638b984fd38bad0a.jpg",
-            "total_likes": 5,
-            "likes": [1, 2, 3, 4, 5],
+            "total_likes": 4,
+            "likes": [
+                2,
+                3,
+                4,
+                5
+            ],
             "date": "2021\/11\/22",
-            "caption": "Bönjor"
+            "caption": "B\u00f6njor"
         }
     }
 }

@@ -26,22 +26,22 @@ if ($method !== "POST") {
 }
 
 // 2. Kollar om Content-TYPE = Multipart/form-data;
-if ($contentType !== "multipart/form-data; boundary=X-INSOMNIA-BOUNDARY"){
+if ($contentType !== "multipart/form-data; boundary=X-INSOMNIA-BOUNDARY") {
     $message = ["message" => "The API only accepts multipart/form-data"];
     send($message, 404);
 }
 
 // 3. Kollar om det finns en fil skickad
-if (isset($_FILES["profile-picture"])) {
+if (isset($_FILES["profile_picture"])) {
 
-    $file = $_FILES["profile-picture"];
+    $file = $_FILES["profile_picture"];
     $filename = $file["name"];
     $tempname = $file["tmp_name"];
     $size = $file["size"];
     $error = $file["error"];
-    
+
     $userID = $_POST["id"];
-    
+
 
     // Kontrollera att allt gick bra med PHP
     // (https://www.php.net/manual/en/features.file-upload.errors.php)
@@ -55,35 +55,33 @@ if (isset($_FILES["profile-picture"])) {
         http_response_code(400);
         exit();
     }
-    
+
 
     // Hämta filinformation
     $info = pathinfo($filename);
-    inspect($info);
-    inspect($file);
     // Hämta ut filändelsen (och gör om till gemener)
     $ext = strtolower($info["extension"]);
 
     // Konvertera från int (siffra) till en sträng,
     // så vi kan slå samman dom nedan.
     $time = (string) time(); // Klockslaget i millisekunder
-    
+
     // Skapa ett unikt filnamn
     $uniqueFilename = sha1("$time$filename");
-    
+
     // Samma filnamn som den som laddades upp
     move_uploaded_file($tempname, "IMAGES/PROFILE/$uniqueFilename.$ext");
-    
+
     // Hämtar filnament på tidigare bild
-    $profilePicture = $users[$userID]["profile-picture"];
+    $profilePicture = $users[$userID]["profile_picture"];
     // Hämtar vilken localhost siffra som  använts vid öppnandet av terminalen
-    $http_host = $_SERVER["HTTP_HOST"];
+    $http_host = "localhost:4000";
     $directory = str_replace("http://$http_host/", "",  $profilePicture);
     unlink($directory);
-    
+
     // Ändrar personens profile-picture i databasen, 
     // till den nya
-    $users[$userID]["profile-picture"] = "http://localhost:7000/IMAGES/PROFILE/$uniqueFilename.$ext";
+    $users[$userID]["profile_picture"] = "http://localhost:4000/IMAGES/PROFILE/$uniqueFilename.$ext";
 
     // Sparar i databasen
     $usersDB["users"] = $users;
@@ -96,4 +94,3 @@ if (isset($_FILES["profile-picture"])) {
     send($message);
 }
 // file_exists($filename); -> Kontrollera om en fil finns eller inte
-?>

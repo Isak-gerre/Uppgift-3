@@ -50,23 +50,22 @@ $message = [];
 if (isset($requestData["username"]) && !empty($requestData["username"])) {
     $username = $requestData["username"];
     $alreadyTaken = alreadyTaken($users, "username", $username);
-    
+
     // Kollar så att användarnamnet inte är upptaget
     if ($alreadyTaken) {
         $message["username"] = "Username already taken";
         send($message, 404);
         $executing = false;
-    } 
+    }
     // Kollar så att användarnamnet är längre än 2 bokstäver
-    if (strlen($username) <= 2){
+    if (strlen($username) <= 2) {
         $message["username"] = "Username has to be more than 2 characters";
         $executing = false;
     }
     // Om inget fel upptäckts så ändra vi nyckeln
-    if($executing){
+    if ($executing) {
         $users[$userID]["username"] = $requestData["username"];
         $message["username"] = "You succeded changing your username";
-
     }
 }
 
@@ -74,25 +73,24 @@ if (isset($requestData["username"]) && !empty($requestData["username"])) {
 if (isset($requestData["email"]) && !empty($requestData["email"])) {
     $email = $requestData["email"];
     $alreadyTaken = alreadyTaken($users, "email", $email);
-    
+
     // Kollar om email redan är taget
     if ($alreadyTaken) {
         $message["email"] = "Email already taken";
         $executing = false;
     }
     // Kollar så att emailen innehåller "@" och "."
-    if(strpos($email, "@") === false && strpos($email, ".") === false){
+    if (strpos($email, "@") === false && strpos($email, ".") === false) {
         $message["email"] = "Email has to contain ''@'' and ''.''";
         $executing = false;
     }
     // Om inget fel upptäckts så ändra vi nyckeln
-    if($executing){
+    if ($executing) {
         $users[$userID]["email"] = $requestData["email"];
         $message["email"] = "You succeded changing your email";
-
     }
 }
- 
+
 // Om PASSWORD är ifyllt och inte tomt
 if (isset($requestData["password"]) && !empty($requestData["password"])) {
     $users[$userID]["password"] = $requestData["password"];
@@ -102,10 +100,10 @@ if (isset($requestData["password"]) && !empty($requestData["password"])) {
 
 // Om LOCATION är ifyllt och inte tomt
 if (isset($requestData["location"])) {
-    if($executing){
+    if ($executing) {
         $users[$userID]["location"] = $requestData["location"];
         $message["location"] = "You succeded changing your location";
-    } 
+    }
 }
 
 // Om BIRTHDAY är ifyllt och inte tomt
@@ -114,17 +112,17 @@ if (isset($requestData["birthday"]) && !empty($requestData["birthday"])) {
 
     $birthdayInteger = intval($birthday);
     // Kollar så att det är en siffra 
-    if(!is_int($birthdayInteger) || $birthdayInteger === 1 || $birthdayInteger === 0){
+    if (!is_int($birthdayInteger) || $birthdayInteger === 1 || $birthdayInteger === 0) {
         $message["birthday_first"] = "It has to be an integer";
         $executing = false;
     }
     // Kollar så att det är ett rimligt år
-    if($birthdayInteger > 1850 || $birthdayInteger < 2002){
+    if ($birthdayInteger < 1850 && $birthdayInteger < 2002) {
         $message["birthday"] = "Insert a valid birthday";
         $executing = false;
     }
     // Om inget fel upptäckts så ändra vi nyckeln
-    if($executing){
+    if ($executing) {
         $users[$userID]["birthday"] = $requestData["birthday"];
         $message["birthday"] = "You succeded changing your birthday";
     }
@@ -132,20 +130,19 @@ if (isset($requestData["birthday"]) && !empty($requestData["birthday"])) {
 
 // Om BIO är ifyllt och inte tomt
 if (isset($requestData["bio"]) && !empty($requestData["bio"])) {
-    if($executing){
+    if ($executing) {
         $users[$userID]["bio"] = $requestData["bio"];
         $message["bio"] = "You succeded changing your bio";
-
     }
 }
 
 // Om inte executing har ändrats till FALSE
 // kommer den att utföra ändringarna
 // annars skickar den alla felmeddelanden som kunnat uppstå 
-if($executing) {
+if ($executing) {
     $usersDB["users"] = $users;
     saveJSON("DATABAS/users.json", $usersDB);
-    send($message, 404);
-} else {
     send($message);
+} else {
+    send($message, 400);
 }
