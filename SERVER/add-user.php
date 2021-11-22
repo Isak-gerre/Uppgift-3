@@ -13,9 +13,12 @@ if ($method !== "POST") {
 }
 
 if ($method === "POST") {
-    if (!isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"], $_POST["bio"], $_FILES["profile_picture"])) {
+    if (
+        !isset($_POST["location"], $_POST["email"], $_POST["username"], $_POST["password"], $_POST["birthday"], $_POST["bio"], $_FILES["profile_picture"])
+        || empty($_POST["location"]) || empty($_POST["email"]) || empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["birthday"]) || empty($_POST["bio"]) || empty($_FILES["profile_picture"])
+    ) {
         send(
-            ["message" => "All fields has to be filled"],
+            ["message" => "All fields has to be filled and has to contain something"],
             400
         );
         exit();
