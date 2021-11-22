@@ -159,16 +159,17 @@ function getImageByIds($ids)
     $idArray = explode(",", $ids);
     $posts = loadJSON("DATABAS/posts.json");
     $spanImages = [];
+    $errorCode = 200;
     foreach ($idArray as $id) {
         if (!isset($posts["posts"][$id])) {
             header("Content-Type: application/json");
-            http_response_code(404);
+            $errorCode = 206;
             echo json_encode(["message" => "Error: all posts not found"]);
             continue;
         }
         $spanImages[] = $posts["posts"][$id];
     }
-    return $spanImages;
+    return ["images" => $spanImages, "errorCode" => $errorCode];
 }
 
 function getImagesByLimit($limit)
