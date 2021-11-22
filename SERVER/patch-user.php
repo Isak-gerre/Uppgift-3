@@ -114,13 +114,12 @@ if (isset($requestData["birthday"]) && !empty($requestData["birthday"])) {
 
     $birthdayInteger = intval($birthday);
     // Kollar så att det är en siffra 
-    inspect($birthdayInteger);
-    if(!is_int($birthdayInteger) || $birthdayInteger == 1 || $birthdayInteger == 0){
-        $message["birthday"] = "It has to be an integer";
+    if(!is_int($birthdayInteger) || $birthdayInteger === 1 || $birthdayInteger === 0){
+        $message["birthday_first"] = "It has to be an integer";
         $executing = false;
     }
     // Kollar så att det är ett rimligt år
-    if($birthdayInteger < 1850 || $birthdayInteger > 2002){
+    if($birthdayInteger > 1850 || $birthdayInteger < 2002){
         $message["birthday"] = "Insert a valid birthday";
         $executing = false;
     }
@@ -135,6 +134,8 @@ if (isset($requestData["birthday"]) && !empty($requestData["birthday"])) {
 if (isset($requestData["bio"]) && !empty($requestData["bio"])) {
     if($executing){
         $users[$userID]["bio"] = $requestData["bio"];
+        $message["bio"] = "You succeded changing your bio";
+
     }
 }
 

@@ -55,10 +55,11 @@ if (isset($_FILES["profile-picture"])) {
         http_response_code(400);
         exit();
     }
+    
 
     // Hämta filinformation
     $info = pathinfo($filename);
-
+    inspect($info);
     // Hämta ut filändelsen (och gör om till gemener)
     $ext = strtolower($info["extension"]);
 
