@@ -14,8 +14,8 @@ if ($method === "GET" && isset($_GET["id"])) {
     send(getImage($id));
 }
 
-if ($method === "GET" && isset($_GET["span"])) {
-    $ids = $_GET["span"];
+if ($method === "GET" && isset($_GET["ids"])) {
+    $ids = $_GET["ids"];
     send(getImageByIds($ids));
 }
 
@@ -23,5 +23,11 @@ if ($method === "GET" && isset($_GET["user_posts"])) {
     $user = $_GET["user_posts"];
     send(getImagesByUser($user));
 }
+
+if ($method === "GET" && isset($_GET["limit"])) {
+    $limit = $_GET["limit"];
+    send(getImagesByLimit($limit));
+}
+
 
 ?>
