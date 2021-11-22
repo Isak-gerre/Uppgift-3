@@ -151,7 +151,7 @@ function getImageByIds($ids)
     $posts = loadJSON("DATABAS/posts.json");
     if (preg_match("/[^,\w]/", $ids)) {
         send(
-            ["message" => "Error: Only word charachters are allowed (and using commas as seperator) OBS: No spaces!"],
+            ["message" => "Error: Only word charachters are allowed (and using commas as seperator)"],
             400
         );
         exit();
@@ -159,17 +159,16 @@ function getImageByIds($ids)
     $idArray = explode(",", $ids);
     $posts = loadJSON("DATABAS/posts.json");
     $spanImages = [];
-    $errorCode = 200;
     foreach ($idArray as $id) {
         if (!isset($posts["posts"][$id])) {
             header("Content-Type: application/json");
+            http_response_code(404);
             echo json_encode(["message" => "Error: all posts not found"]);
-            $errorCode = 206;
             continue;
         }
         $spanImages[] = $posts["posts"][$id];
     }
-    return ["images" => $spanImages, "errorCode" => $errorCode];
+    return $spanImages;
 }
 
 function getImagesByLimit($limit)
