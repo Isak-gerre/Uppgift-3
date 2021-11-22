@@ -168,15 +168,17 @@ function getImageByIds($ids)
     $posts = loadJSON("DATABAS/posts.json");
     $spanImages = [];
     $errorCode = 200;
+    $found = false;
     foreach ($idArray as $id) {
         if (!isset($posts["posts"][$id])) {
             header("Content-Type: application/json");
             $errorCode = 206;
-            echo json_encode(["message" => "Error: all posts not found"]);
+            $spanImages[] = ["message" => "Error: Post not found"];
             continue;
         }
         $spanImages[] = $posts["posts"][$id];
     }
+    
     return ["images" => $spanImages, "errorCode" => $errorCode];
 }
 
