@@ -14,13 +14,11 @@
                 2,
                 3
             ],
-            "posts": [
-                312312,
-                312322
-            ],
+            "posts": [],
             "location": "Helsingborg",
-            "birthday": "1998",
+            "birthday": "1998",         
             "profile-picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/aa33f647b1a3d9695cdf3912345ddbc89a132e08.jpg"
+
         },
         "2": {
             "id": 2,
@@ -36,15 +34,26 @@
                 3
             ],
             "posts": [
-                313312,
-                313322,
-                "05c81e5ee2f4b6f227b900c31e3fa09240607b19",
-                "743f9d008086ee5348b49b5a720e5790f4fca41d",
-                "f4e5e3f1719123fb6903e049d88e7ae037119fe1"
+                "7b4f28dc812e020fe7c8dcf76c29ca28cf51559c",
+                "b8eb0d3603c977831da1d4c6ca4f6e98df6b3c20",
+                "142a36fb2c5b6d06e1cb1c081d0cb5399bb6838a",
+                "32f64eac4ec8aed8863d2f9140c15abe907e6d0f",
+                "074a673e4d602a2c9d972be3294c8c52c9ea0ecb",
+                "5fef6f2cd97c78229490f8014be65e182a34353b",
+                "73412d5a838ff3db3824703ae2950d84ec72fd1a",
+                "ed140f0d800f31faba840a5070d50f036979ca1d",
+                "121c14d8c11a208fab73900108cfd20a99810776",
+                "323cb9a57fea60915b62c8cec602d8d4584f4c72",
+                "0b86a2bf71e38a461c88a9ceb873ac581975176a",
+                "8ce6e23e00e54aaa8d2012372336d811eb760130",
+                "d3e4f49ff79a26a13fa85e9dd25fed574daee78b",
+                "71a3c127bb5c12fe5f99e56d77f412a3c345b4c9",
+                "cf220049225d3ab4d1f4e212622e4b4dc64cbbc7",
+                "adcef43368bbd72148b8f2e79dad44b493e3055f"
             ],
             "location": "Malm\u00f6",
             "birthday": "1998",
-            "profile-picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/blabla.jpg",
+            "profile-picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/blabla.jpg",
             "email": "isak.gerre@gmail.com"
         },
         "3": {
@@ -60,13 +69,10 @@
                 1,
                 2
             ],
-            "posts": [
-                314312,
-                314322
-            ],
+            "posts": [],
             "location": "Malm\u00f6",
             "birthday": "1999",
-            "profile-picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/blabla.jpg"
+            "profile-picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/blabla.jpg"
         },
         "4": {
             "id": "4",
@@ -74,7 +80,7 @@
             "email": "isak.gerre@gmail.com",
             "password": "I",
             "bio": "Henloo",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/5f76535ac577d5553d5906445a6e5dbb26f47439.jpg",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/5f76535ac577d5553d5906445a6e5dbb26f47439.jpg",
             "followers": [],
             "following": [],
             "posts": [],
@@ -86,7 +92,7 @@
             "email": "isak.gerre@gmail.com",
             "password": "password",
             "bio": "",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
             "followers": [],
             "following": [],
             "posts": [],
@@ -98,7 +104,7 @@
             "email": "isak.gerre@gmail.com",
             "password": "password",
             "bio": "",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
             "followers": [],
             "following": [],
             "posts": [],
@@ -110,7 +116,7 @@
             "email": "isak.gerre@gmail.com",
             "password": "password",
             "bio": "",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/27246850e92eb328e511c21435b48b521f245cc3.jpg",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/27246850e92eb328e511c21435b48b521f245cc3.jpg",
             "followers": [],
             "following": [],
             "posts": [],
@@ -122,12 +128,48 @@
             "email": "isak.gerre@gmail.com",
             "password": "password",
             "bio": "\"heeloo\"",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/b19acd4f5af485b28a271b1b4281708d8695d5f6.jpg",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/b19acd4f5af485b28a271b1b4281708d8695d5f6.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "9": {
+            "id": "9",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "bio": "heeloo",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/3f02c42006408b0bfe3bcb559a540da6d5501c1b.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "10": {
+            "id": "10",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "bio": "henloo",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/7f4362949144211be878ac2aa7964fae93a25951.jpg",
+            "followers": [],
+            "following": [],
+            "posts": [],
+            "birthday": "1998"
+        },
+        "11": {
+            "id": "11",
+            "username": "Isak",
+            "email": "isak.gerre@gmail.com",
+            "password": "password",
+            "bio": "henloo",
+            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/da67efcc89cfa330b7b1ba71945184ecab91eb5e.jpg",
             "followers": [],
             "following": [],
             "posts": [],
             "birthday": "1998"
         }
     },
-    "nextID": 9
+    "nextID": 12
 }
