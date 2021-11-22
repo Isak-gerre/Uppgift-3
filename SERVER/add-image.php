@@ -92,7 +92,7 @@ if ($method === "POST" && isset($_FILES["image"])) {
         "total_likes" => 0,
         "likes" => [],
         "date" => date("Y/m/d"),
-        "caption" => ""
+        "caption" => $caption
     ];
     $posts[$uniqueID] = $newPost;
     $database["posts"] = $posts;

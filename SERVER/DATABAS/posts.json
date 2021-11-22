@@ -1,76 +1,84 @@
 {
     "posts": {
-        "7b4f28dc812e020fe7c8dcf76c29ca28cf51559c": {
-            "id": "7b4f28dc812e020fe7c8dcf76c29ca28cf51559c",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/4db538d1dd67c4b1089201a7d968d8a94e1dff4f.jpg",
-            "total_likes": 0,
-            "likes": [],
-            "date": "2021\/11\/20",
-            "caption": ""
-        },
-        "b8eb0d3603c977831da1d4c6ca4f6e98df6b3c20": {
-            "id": "b8eb0d3603c977831da1d4c6ca4f6e98df6b3c20",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/a52a40ac044b9a55e20372f7247c2fc2408c74c0.jpg",
-            "total_likes": 0,
-            "likes": [],
-            "date": "2021\/11\/20",
-            "caption": ""
-        },
-        "142a36fb2c5b6d06e1cb1c081d0cb5399bb6838a": {
-            "id": "142a36fb2c5b6d06e1cb1c081d0cb5399bb6838a",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/0a4449fef06130bd6a11923640d6e34a5fbde1a0.jpg",
-            "total_likes": 0,
-            "likes": [],
-            "date": "2021\/11\/20",
-            "caption": ""
-        },
-        "32f64eac4ec8aed8863d2f9140c15abe907e6d0f": {
-            "id": "32f64eac4ec8aed8863d2f9140c15abe907e6d0f",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/1c2d3e38c5446bf2856046a83f6e9dcbaf923a0e.jpg",
-            "total_likes": 0,
-            "likes": [],
-            "date": "2021\/11\/20",
-            "caption": ""
-        },
-        "074a673e4d602a2c9d972be3294c8c52c9ea0ecb": {
-            "id": "074a673e4d602a2c9d972be3294c8c52c9ea0ecb",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/fe0a8ea8cd26b938ad85700456e96d3d551c7be2.jpg",
-            "total_likes": 0,
-            "likes": [],
-            "date": "2021\/11\/20",
-            "caption": ""
-        },
-        "5fef6f2cd97c78229490f8014be65e182a34353b": {
-            "id": "5fef6f2cd97c78229490f8014be65e182a34353b",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/491c68a9544cd32064a1a260f091f8e44abb00b5.jpg",
-            "total_likes": 0,
-            "likes": [],
-            "date": "2021\/11\/20",
-            "caption": ""
-        },
-        "73412d5a838ff3db3824703ae2950d84ec72fd1a": {
-            "id": "73412d5a838ff3db3824703ae2950d84ec72fd1a",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/3e1df04cf7ab2c9315f9ee40cb0cfbc606d2ea21.jpg",
-            "total_likes": 0,
-            "likes": [],
-            "date": "2021\/11\/20",
-            "caption": ""
-        },
-        "cf220049225d3ab4d1f4e212622e4b4dc64cbbc7": {
-            "id": "cf220049225d3ab4d1f4e212622e4b4dc64cbbc7",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/a768a57571488a7ccdf48560904fef47e3bdae62.jpg",
-            "total_likes": 0,
-            "likes": [],
+        "edb75c76c43e70fa939cd6dbe51d9ea7c1467356": {
+            "id": "edb75c76c43e70fa939cd6dbe51d9ea7c1467356",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/283f960daa311ec9800732170fba9526d6e8169c.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
             "date": "2021\/11\/22",
-            "caption": ""
+            "caption": "as"
         },
-        "adcef43368bbd72148b8f2e79dad44b493e3055f": {
-            "id": "adcef43368bbd72148b8f2e79dad44b493e3055f",
-            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/252ef19149d047f987ccb3f23cc6adf5e96fde8c.jpg",
-            "total_likes": 0,
-            "likes": [],
+        "5612f3beb9e0f651e5011b286bdd65a75c820aa9": {
+            "id": "5612f3beb9e0f651e5011b286bdd65a75c820aa9",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/bd3ec115f64960cd3e2c281a7bbb0f1b39e0c962.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
             "date": "2021\/11\/22",
-            "caption": ""
+            "caption": "asdasd"
+        },
+        "1a29550b394c64586175cc1188718414681eb310": {
+            "id": "1a29550b394c64586175cc1188718414681eb310",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/18c36bbe7c059498be3e4a19ccae6fca60167f65.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "asssss"
+        },
+        "441d0a763d396672f74b50ab0fe027972ce49c0f": {
+            "id": "441d0a763d396672f74b50ab0fe027972ce49c0f",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/8c07e49a51d454032e36a1f4264918650f2e9b4b.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "sads"
+        },
+        "08dcae83a1a64e6c148b239d2dbeb43632c86336": {
+            "id": "08dcae83a1a64e6c148b239d2dbeb43632c86336",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/750b7f67539eff1878301fa58777d7d88dfdcfad.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "adadsd"
+        },
+        "ff645d7e3e3ffd7c724fa9e32f5654a64782911b": {
+            "id": "ff645d7e3e3ffd7c724fa9e32f5654a64782911b",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/68fd3913616d143cb40fbce7c587c08b81af706a.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "as"
+        },
+        "600fa6f0ba8d330610fc35a67a80490340b4c1f8": {
+            "id": "600fa6f0ba8d330610fc35a67a80490340b4c1f8",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/85a64a0bf6c409c62068c97b1cc4e4da3ec6b3bb.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "asdasd"
+        },
+        "c2cc12f340a655eabe15d38ca131285dd72921ac": {
+            "id": "c2cc12f340a655eabe15d38ca131285dd72921ac",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/a0e25eb4fa9677af6536312fef42180ae0803cca.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "asdasd"
+        },
+        "ba5754902651ffbb1c48cd4449d318327cc4c16f": {
+            "id": "ba5754902651ffbb1c48cd4449d318327cc4c16f",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/6b9a3f5045fe3cc2ea675651cd8292ab3950a282.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "Hej"
+        },
+        "6cbf9ea1c49bd2a279cbebd782154d85eee264d6": {
+            "id": "6cbf9ea1c49bd2a279cbebd782154d85eee264d6",
+            "image_url": "http:\/\/localhost:4000\/IMAGES\/POSTS\/45608819a2276925abd3e4b1638b984fd38bad0a.jpg",
+            "total_likes": 5,
+            "likes": [1, 2, 3, 4, 5],
+            "date": "2021\/11\/22",
+            "caption": "Bönjor"
         }
     }
 }

@@ -28,27 +28,27 @@ if ($method === "POST") {
     $tempname = $profileImage["tmp_name"];
     $size = $profileImage["size"];
     $error = $profileImage["error"];
-    
+
     $location = $_POST["location"];
     $email = $_POST["email"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $birthday = $_POST["birthday"];
     $bio = $_POST["bio"];
-    
+
     $database = json_decode(file_get_contents("DATABAS/users.json"), true);
     $users = $database["users"];
     $userID = $database["nextID"];
-    
+
     $alreadyTakenEmail = alreadyTaken($users, "email", $email);
     $alreadyTakenUsername = alreadyTaken($users, "username", $username);
-    
+
     // Kollar om email redan är taget
     if ($alreadyTakenEmail) {
         $message["message"] = "Email already in use";
         send($message, 400);
     }
-    
+
     if ($alreadyTakenUsername) {
         $message["message"] = "Username already in use";
         send($message, 400);
@@ -94,7 +94,7 @@ if ($method === "POST") {
         "email" => $email,
         "password" => $password,
         "bio" => $bio,
-        "profile_picture" => "http://localhost:7000/IMAGES/PROFILE/$uniqueFilename.$ext",
+        "profile_picture" => "http://localhost:4000/IMAGES/PROFILE/$uniqueFilename.$ext",
         "followers" => [],
         "following" => [],
         "posts" => [],

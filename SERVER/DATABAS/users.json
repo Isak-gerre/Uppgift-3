@@ -1,175 +1,80 @@
 {
     "users": {
         "1": {
-            "id": 1,
-            "username": "I",
-            "email": "isak.gerre@gmail.com",
-            "password": "I",
-            "bio": "Henloo",
-            "followers": [
-                2,
-                3
+            "id": "1",
+            "username": "Sebbe",
+            "email": "Sebbe@gmail.com",
+            "password": "Hund",
+            "bio": "Gillar hundar mer \u00e4n sin sambo",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/8d01d1877ab917a3cdaa8e135a83a71d1f29c932.jpg",
+            "followers": [2, 3, 5],
+            "following": [2, 3, 5],
+            "posts": [
+                "edb75c76c43e70fa939cd6dbe51d9ea7c1467356",
+                "5612f3beb9e0f651e5011b286bdd65a75c820aa9"
             ],
-            "following": [
-                2,
-                3
-            ],
-            "posts": [],
-            "location": "Helsingborg",
-            "birthday": "1998",         
-            "profile-picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/aa33f647b1a3d9695cdf3912345ddbc89a132e08.jpg"
-
+            "birthday": "1891"
         },
         "2": {
-            "id": 2,
-            "username": "Niklas69",
-            "password": "Isak\u00c4rB\u00e4st",
-            "bio": "Henloo",
-            "followers": [
-                1,
-                3
-            ],
-            "following": [
-                1,
-                3
-            ],
+            "id": "2",
+            "username": "Isak",
+            "email": "isak@gmail.com",
+            "password": "Oboy",
+            "bio": "Gillar oboy",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/2991bbb4dea06c70ea428a70086846c2d2c871e8.jpg",
+            "followers": [1, 4, 5],
+            "following": [1, 4, 5],
             "posts": [
-                "7b4f28dc812e020fe7c8dcf76c29ca28cf51559c",
-                "b8eb0d3603c977831da1d4c6ca4f6e98df6b3c20",
-                "142a36fb2c5b6d06e1cb1c081d0cb5399bb6838a",
-                "32f64eac4ec8aed8863d2f9140c15abe907e6d0f",
-                "074a673e4d602a2c9d972be3294c8c52c9ea0ecb",
-                "5fef6f2cd97c78229490f8014be65e182a34353b",
-                "73412d5a838ff3db3824703ae2950d84ec72fd1a",
-                "ed140f0d800f31faba840a5070d50f036979ca1d",
-                "121c14d8c11a208fab73900108cfd20a99810776",
-                "323cb9a57fea60915b62c8cec602d8d4584f4c72",
-                "0b86a2bf71e38a461c88a9ceb873ac581975176a",
-                "8ce6e23e00e54aaa8d2012372336d811eb760130",
-                "d3e4f49ff79a26a13fa85e9dd25fed574daee78b",
-                "71a3c127bb5c12fe5f99e56d77f412a3c345b4c9",
-                "cf220049225d3ab4d1f4e212622e4b4dc64cbbc7",
-                "adcef43368bbd72148b8f2e79dad44b493e3055f"
+                "1a29550b394c64586175cc1188718414681eb310",
+                "441d0a763d396672f74b50ab0fe027972ce49c0f"
             ],
-            "location": "Malm\u00f6",
-            "birthday": "1998",
-            "profile-picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/blabla.jpg",
-            "email": "isak.gerre@gmail.com"
+            "birthday": "1998"
         },
         "3": {
-            "id": 3,
-            "username": "Lina123",
-            "password": "password",
-            "bio": "",
-            "followers": [
-                1,
-                2
+            "id": "3",
+            "username": "Ivan",
+            "email": "ivan@gmail.com",
+            "password": "S\u00f6mn",
+            "bio": "Gillar s\u00f6mn",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/b03e13938e16d06f9616d59cf34bee81bc1bafb7.jpg",
+            "followers": [4, 1, 5],
+            "following": [4, 1, 5],
+            "posts": [
+                "08dcae83a1a64e6c148b239d2dbeb43632c86336",
+                "ff645d7e3e3ffd7c724fa9e32f5654a64782911b"
             ],
-            "following": [
-                1,
-                2
-            ],
-            "posts": [],
-            "location": "Malm\u00f6",
-            "birthday": "1999",
-            "profile-picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/blabla.jpg"
+            "birthday": "2010"
         },
         "4": {
             "id": "4",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "I",
-            "bio": "Henloo",
-            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/5f76535ac577d5553d5906445a6e5dbb26f47439.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
+            "username": "Niklas69",
+            "email": "niklas@gmail.com",
+            "password": "Stavbitch",
+            "bio": "Ov\u00e4n med Stickan",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/3094537e44d6445bc14fbbb8d51f49854aeed531.jpg",
+            "followers": [3, 2, 5],
+            "following": [3, 2],
+            "posts": [
+                "600fa6f0ba8d330610fc35a67a80490340b4c1f8",
+                "c2cc12f340a655eabe15d38ca131285dd72921ac"
+            ],
+            "birthday": "1990"
         },
         "5": {
             "id": "5",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "password",
-            "bio": "",
-            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
-        },
-        "6": {
-            "id": "6",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "password",
-            "bio": "",
-            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/0c476ad02a71a841328877d83895f9c3ccb2c483.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
-        },
-        "7": {
-            "id": "7",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "password",
-            "bio": "",
-            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/27246850e92eb328e511c21435b48b521f245cc3.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
-        },
-        "8": {
-            "id": "8",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "password",
-            "bio": "\"heeloo\"",
-            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/b19acd4f5af485b28a271b1b4281708d8695d5f6.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
-        },
-        "9": {
-            "id": "9",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "password",
-            "bio": "heeloo",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/3f02c42006408b0bfe3bcb559a540da6d5501c1b.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
-        },
-        "10": {
-            "id": "10",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "password",
-            "bio": "henloo",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/7f4362949144211be878ac2aa7964fae93a25951.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
-        },
-        "11": {
-            "id": "11",
-            "username": "Isak",
-            "email": "isak.gerre@gmail.com",
-            "password": "password",
-            "bio": "henloo",
-            "profile_picture": "http:\/\/localhost:7000\/IMAGES\/PROFILE\/da67efcc89cfa330b7b1ba71945184ecab91eb5e.jpg",
-            "followers": [],
-            "following": [],
-            "posts": [],
-            "birthday": "1998"
+            "username": "Test Testsson",
+            "email": "test@gmail.com",
+            "password": "Test",
+            "bio": "Test",
+            "profile_picture": "http:\/\/localhost:4000\/IMAGES\/PROFILE\/e19c3c272e60112df3cbe29541c0626872674abb.jpg",
+            "followers": [1, 2, 3],
+            "following": [1, 2, 3, 4],
+            "posts": [
+                "ba5754902651ffbb1c48cd4449d318327cc4c16f",
+                "6cbf9ea1c49bd2a279cbebd782154d85eee264d6"
+            ],
+            "birthday": "1990"
         }
     },
-    "nextID": 12
+    "nextID": 6
 }
